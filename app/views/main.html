@@ -1,23 +1,38 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style> 
+    #cloudSpace {
+        width: 700px;
+        height: 500px;
+        background-color: white;
+        text-align: center;
+        margin: 15px;
+    }
+    </style>
+  </head>
+<body>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+  <div ng-app= "frontendApp">
+    <div ng-controller="MainCtrl">
+      <div id="cloudSpace" style="display:none;"> </div>
+       <div class="xs-col-8 xs-col-offset-2 row" style="text-align:center;">
+        <input placeholder="Search Artist" type= "text" id="searchText" class="purple-border"></input>
+        <h id="buttons">
+        <input type="Submit" onclick="submitFunction();"id="submitButton" class="btn btn-primary" style="background-color:purple;"></input>
+        <button ng-click="addtoCloudFunction()" id="addtoCloudButton" class="btn btn-primary" style="background-color:purple;">Add To Cloud</button>
+        <button ng-click="sharetoFBFunction()" id="sharetoFBButton" class="btn btn-primary" style="background-color:purple;">Share</button></h>
+      </div>
+  </div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+  <script>
+  function submitFunction() {
+      // var artistName = document.getElementById("searchText").innerHTML;
+      // document.getElementById("cloudSpace").innerHTML = artistName;
+      document.getElementById("cloudSpace").style.display = "block";
+  }
+  </script>
+
+</body>
+</html>

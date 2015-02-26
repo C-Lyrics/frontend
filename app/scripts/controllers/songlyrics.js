@@ -9,9 +9,10 @@
  */
 angular.module('frontendApp')
   .controller('SonglyricsCtrl', function ($scope) {
-    $scope.awesomeThings = [
+    $scope.songLyrics = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
+      //display all the lyrics of the song
     ];
   });

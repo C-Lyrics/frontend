@@ -1,1 +1,19 @@
 <p>This is the SongsList view.</p>
+<h3>{{searchWord}}</h3>
+<table class="table ">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Count</th>
+        </tr>
+    </thead>
+    <tr ng-repeat="song in Songslist">
+        <td>
+        <a ng-href="#/Songslist">
+            {{song.title}}
+        </a>
+        </td>
+        <td>{{song.count}}</td>
+    </tr>
+</table>
+<a class="btn btn-default" ng-href="#/" style="background-color:purple;color:white;">Back to Cloud</a>

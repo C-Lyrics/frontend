@@ -9,9 +9,12 @@
  */
 angular.module('frontendApp')
   .controller('SongslistCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+  	// var numberofsongs = 100;
+    $scope.Songslist = [
+      //grab the list of songs from API
+      // for(int i = 0; i < numberofsongs; i++){
+      // 	{title:'SongTitle',
+      // 	count: wordcount,}
+      // }
     ];
   });

@@ -2,8 +2,8 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  background-color:lightgray;
 }
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -77,3 +77,16 @@ body {
     border-bottom: 0;
   }
 }
+
+/* MAIN PAGE AESTHETICS */
+#could-space{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+}
+.purple-border{
+    width: 175px;
+    height: 30px;
+    border: 1px solid purple;
+}
+
