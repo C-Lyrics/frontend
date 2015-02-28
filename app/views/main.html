@@ -1,14 +1,15 @@
-<div id="cloudSpace" style="display:none;"></div>
+<div c-cloud-word></div>
 <div class="xs-col-8 xs-col-offset-2 row" style="text-align:center;">
 
-  <div class="col-md-12 col-md-offset-1 row">
+  <div class="col-md-12 col-md-offset-0 row">
 
-    <input placeholder="Search Artist" type="text" ng-model="search" class="purple-border form-control"></input>
+    <div class="col-md-5">
+      <autocomplete></autocomplete>
+    </div>
 
-    <div c-action-button callback="" text="'Submit'"></div>
+    <div c-action-button callback="generateWC" text="'Submit'"></div>
     <div c-action-button callback="" text="'Add to Cloud'"></div>
-    <div c-action-button callback="" text="'Share'"></div>
+    <div class="fb-share-button" data-href="{{currentUrl}}" data-layout="button_count"></div>
 
   </div>
-
 </div>

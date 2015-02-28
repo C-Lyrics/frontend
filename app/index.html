@@ -1,51 +1,49 @@
 <!doctype html>
 <html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <title>C-Lyrics - Word Cloud for Lyrics</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="frontendApp">
+<head>
+  <meta charset="utf-8">
+  <title>C-Lyrics - Word Cloud for Lyrics</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/autocomplete.css">
+  <!-- endbuild -->
+</head>
+<body ng-app="frontendApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+      <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <h3 class="text-muted">C-Lyrics</h3>
+      <!-- Add your site or application content here -->
+      <div class="container">
+        <div class="header">
+          <h3 class="text-muted">C-Lyrics</h3>
+        </div>
+
+        <div ng-view=""></div>
+
+        <div class="footer">
+          <p><span class="glyphicon glyphicon-heart"></span> from the C-Lyrics team</p>
+        </div>
       </div>
 
-      <div ng-view=""></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-
-    <!-- build:js(.) scripts/oldieshim.js -->
+      <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
@@ -68,17 +66,19 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/songslist.js"></script>
-        <script src="scripts/controllers/songlyrics.js"></script>
-        <script src="scripts/directives/cnavigationbutton.js"></script>
-        <script src="scripts/directives/cactionbutton.js"></script>
-        <script src="scripts/services/autocomplete.js"></script>
-        <script src="scripts/services/lyrics.js"></script>
-        <script src="scripts/directives/cautocomplete.js"></script>
-        <!-- endbuild -->
-</body>
-</html>
+    <script src="scripts/libs/autocomplete.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/songslist.js"></script>
+    <script src="scripts/controllers/songlyrics.js"></script>
+    <script src="scripts/directives/cnavigationbutton.js"></script>
+    <script src="scripts/directives/cactionbutton.js"></script>
+    <script src="scripts/services/autocomplete.js"></script>
+    <script src="scripts/services/lyrics.js"></script>
+    <script src="scripts/directives/cautocomplete.js"></script>
+    <script src="scripts/directives/ccloudword.js"></script>
+    <!-- endbuild -->
+  </body>
+  </html>

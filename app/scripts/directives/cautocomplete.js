@@ -9,8 +9,13 @@
 angular.module('frontendApp')
     .directive('cAutocomplete', function() {
         return {
-            templateUrl: '<div></div>',
+            templateUrl: 'views/directives/cAutocomplete.html',
             restrict: 'EACM',
-            link: function postLink(scope, element, attrs) {}
+            scope: {
+                callback: '=callback',
+            },
+            link: function postLink(scope, element, attrs) {
+
+            }
         };
     });

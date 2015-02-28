@@ -8,10 +8,8 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('MainCtrl', function($scope) {
-        $scope.shareText = 'Share';
-        $scope.submitText = 'shareText';
-        $scope.addText = 'shareText';
+    .controller('MainCtrl', function($scope, $location) {
+        $scope.currentUrl = $location.path();
 
         $scope.generateWC = function() {
             alert($scope.search);
