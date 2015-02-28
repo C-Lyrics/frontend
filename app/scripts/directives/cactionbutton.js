@@ -7,12 +7,15 @@
  * # cActionButton
  */
 angular.module('frontendApp')
-  .directive('cActionButton', function () {
-    return {
-      template: '<div></div>',
-      restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the cActionButton directive');
-      }
-    };
-  });
+    .directive('cActionButton', function() {
+        return {
+            templateUrl: 'views/directives/buttonView.html',
+            restrict: 'EACM',
+            replace: true,
+            scope: {
+                text: '=text',
+                callback: '=callback',
+            },
+            link: function postLink(scope, element, attrs) {}
+        };
+    });

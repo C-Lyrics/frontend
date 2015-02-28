@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc directive
- * @name frontendApp.directive:cNavigationButton
+ * @name frontendApp.directive:cAutocomplete
  * @description
- * # cNavigationButton
+ * # cAutocomplete
  */
 angular.module('frontendApp')
-    .directive('cNavigationButton', function() {
+    .directive('cAutocomplete', function() {
         return {
-            templateUrl: 'views/directives/buttonView.html',
+            templateUrl: '<div></div>',
             restrict: 'EACM',
             link: function postLink(scope, element, attrs) {}
         };
