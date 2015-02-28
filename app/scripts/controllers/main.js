@@ -12,11 +12,20 @@ angular.module('frontendApp')
         $scope.currentUrl = $location.path();
         $scope.topWords = [];
         $scope.suggestions = [];
+        /*
+         * TODO:
+         * - Loading image
+         * - Error message if there is one
+         */
 
         $scope.$watch('$scope.suggestions', function(newVal, oldVal) {
             Autocomplete.getArtists(newVal, function(res) {
                 $scope.suggestions = res;
             });
+        });
+
+        $scope.$watch('Lyrics.selectedArtists', function(oldValue, newVal) {
+            $location.search('artists', Lyrics.selectedArtists.toString())
         });
 
         $scope.generateWC = function() {
@@ -27,7 +36,7 @@ angular.module('frontendApp')
             Lyrics.selectedLyrics = $scope.topWords;
         };
 
-    $scope.addToCloud = function() {
+        $scope.addToCloud = function() {
             var artist = $scope.currentSearch;
             Lyrics.getLyrics(artist, function(lyrics) {
                 lyrics = Lyrics.formatTop(lyrics, 200);

@@ -8,13 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('SongslistCtrl', function ($scope) {
-  	// var numberofsongs = 100;
-    $scope.Songslist = [
-      //grab the list of songs from API
-      // for(int i = 0; i < numberofsongs; i++){
-      // 	{title:'SongTitle',
-      // 	count: wordcount,}
-      // }
-    ];
-  });
+    .controller('SongslistCtrl', function($scope, $location, Lyrics) {
+        $scope.searchWord = $location.search()['word'];
+        $scope.songsList = Lyrics.getSongsTitle($scope.searchWord);
+    });

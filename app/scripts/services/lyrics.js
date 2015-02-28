@@ -39,7 +39,7 @@ angular.module('frontendApp')
             'We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.';
         var countFrequency = function(word, lyrics) {
             // Actually implement the count function
-            return Math.random() * 10;
+            return parseInt(Math.random() * 10);
         };
 
         var selectMostFrequents = function(words, N) {
@@ -52,19 +52,23 @@ angular.module('frontendApp')
             selectedLyrics: [],
             selectedArtists: [],
 
-            getSongsTitle: function(word, callback) {
-                var lyrics, i, occurences, titles = [];
-                for (i = 0, i < songs.length; i++) {
-                    lyrics = songs[i].lyrics;
-                    occurences = lyrics.indexOf(word);
+            getSongsTitle: function(word) {
+                var song, lyrics, i, occurences, titles = [];
+                for (i = 0; i < songs.length; i++) {
+                    song = songs[i];
+                    lyrics = song.lyrics;
+                    occurences = lyrics.toLowerCase()
+                        .indexOf(word);
                     if (occurences != -1) {
                         occurences = countFrequency(word, lyrics);
                         titles.push({
-                            title: '',
+                            id: i,
+                            title: song.title,
                             count: occurences,
                         });
                     }
                 }
+                debugger
                 return titles;
             },
 
