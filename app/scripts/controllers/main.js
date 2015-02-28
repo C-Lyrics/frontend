@@ -23,13 +23,18 @@ angular.module('frontendApp')
             Lyrics.getLyrics($scope.currentSearch, function(lyrics) {
                 $scope.topWords = Lyrics.formatTop(lyrics, 200);
             });
+            Lyrics.selectedArtists = [$scope.currentSearch, ];
+            Lyrics.selectedLyrics = $scope.topWords;
         };
 
-        $scope.addtoCloud = function() {
-
+    $scope.addToCloud = function() {
+            var artist = $scope.currentSearch;
+            Lyrics.getLyrics(artist, function(lyrics) {
+                lyrics = Lyrics.formatTop(lyrics, 200);
+                lyrics = Lyrics.chooseBests(lyrics, Lyrics.selectedLyrics);
+                Lyrics.selectedLyrics = lyrics;
+                Lyrics.selectedArtists.push(artist);
+                $scope.topWords = lyrics;
+            });
         };
-        $scope.sharetoFB = function() {
-
-        };
-
     });

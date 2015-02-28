@@ -1,5 +1,7 @@
 <div class="col-sm-12">
-    <div c-cloud-word words="topWords" class="col-sm-12"></div>
+    <form ng-submit="generateWC()">
+        <div c-cloud-word words="topWords" class="col-sm-12"></div>
+    </form>
 </div>
 <div class="xs-col-8 xs-col-offset-2 row" style="text-align:center;">
 
@@ -9,7 +11,7 @@
       <autocomplete data="suggestions" ng-model="currentSearch"></autocomplete>
   </div>
   <div c-action-button callback="generateWC" text="'Submit'"></div>
-  <div c-action-button callback="" text="'Add to Cloud'"></div>
+  <div c-action-button callback="addToCloud" text="'Add to Cloud'"></div>
   <div class="fb-share-button" data-href="{{currentUrl}}" data-layout="button_count"></div>
 </div>
 </div>
