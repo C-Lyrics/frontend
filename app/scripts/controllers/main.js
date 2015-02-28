@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('MainCtrl', function($scope, $location, Autocomplete) {
+    .controller('MainCtrl', function($scope, $location, Autocomplete, Lyrics) {
         $scope.currentUrl = $location.path();
         $scope.topWords = [];
         $scope.suggestions = [];
@@ -20,7 +20,9 @@ angular.module('frontendApp')
         });
 
         $scope.generateWC = function() {
-            alert($scope.currentSearch);
+            Lyrics.getLyrics($scope.currentSearch, function(lyrics) {
+                $scope.topWords = Lyrics.formatTop(lyrics, 200);
+            });
         };
 
         $scope.addtoCloud = function() {
