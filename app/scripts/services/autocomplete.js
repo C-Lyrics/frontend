@@ -8,16 +8,13 @@
  * Factory in the frontendApp.
  */
 angular.module('frontendApp')
-  .factory('Autocomplete', function () {
-    // Service logic
-    // ...
+    .factory('Autocomplete', function($http, Server) {
+        var artists = ['Marley', 'Stones', 'Beatles'];
 
-    var meaningOfLife = 42;
-
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
-  });
+        // Public API here
+        return {
+            getArtists: function(name, callback) {
+                callback(artists);
+            }
+        };
+    });

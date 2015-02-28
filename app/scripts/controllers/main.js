@@ -8,27 +8,19 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('MainCtrl', function($scope, $location) {
+    .controller('MainCtrl', function($scope, $location, Autocomplete) {
         $scope.currentUrl = $location.path();
-        $scope.topWords = [{
-            text: 'We',
-            weight: 15,
-        }, {
-            text: 'are',
-            weight: 23,
-        }, {
-            text: 'the',
-            weight: 3,
-        }, {
-            text: 'champions',
-            weight: 2,
-        }, {
-            text: 'world',
-            weight: 32,
-        }, ];
+        $scope.topWords = [];
+        $scope.suggestions = [];
+
+        $scope.$watch('$scope.suggestions', function(newVal, oldVal) {
+            Autocomplete.getArtists(newVal, function(res) {
+                $scope.suggestions = res;
+            });
+        });
 
         $scope.generateWC = function() {
-            alert($scope.search);
+            alert($scope.currentSearch);
         };
 
         $scope.addtoCloud = function() {

@@ -1,13 +1,15 @@
-<div c-cloud-word words="topWords" class="col-sm-12"></div>
+<div class="col-sm-8 col-sm-offset-2">
+    <div c-cloud-word words="topWords" class="col-sm-12"></div>
+</div>
 <div class="xs-col-8 xs-col-offset-2 row" style="text-align:center;">
 
   <div class="col-md-12 col-md-offset-0 row" style="margin:20px;">
 
     <div class="col-md-5">
-      <autocomplete data="topWords" ng-model="currentSearch"></autocomplete>
-    </div>
-      <div c-action-button callback="generateWC" text="'Submit'"></div>
-      <div c-action-button callback="" text="'Add to Cloud'"></div>
-      <div class="fb-share-button" data-href="{{currentUrl}}" data-layout="button_count"></div>
+      <autocomplete data="suggestions" ng-model="currentSearch"></autocomplete>
   </div>
+  <div c-action-button callback="generateWC" text="'Submit'"></div>
+  <div c-action-button callback="" text="'Add to Cloud'"></div>
+  <div class="fb-share-button" data-href="{{currentUrl}}" data-layout="button_count"></div>
+</div>
 </div>

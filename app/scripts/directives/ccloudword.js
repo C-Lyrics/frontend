@@ -7,16 +7,16 @@
  * # cCloudWord
  */
 angular.module('frontendApp')
-    .directive('cCloudWord', function() {
+    .directive('cCloudWord', function(Server) {
         return {
-            template: '<jqcloud words="words" autoResize="true" width="500" height="500" colors="{{colors}}" steps="7"></jqcloud>',
+            templateUrl: 'views/directives/cWordCloud.html',
             restrict: 'EACM',
             scope: {
                 words: '=words',
             },
             link: function postLink(scope, element, attrs) {
                 scope.words = scope.words.map(function(curr, idx) {
-                    curr.link = '';
+                    curr.link = Server.URL + 'SongsList/?word=' + curr.text;
                     return curr;
                 });
                 scope.colors = ['#ffffff', '#000000', '#223344', '#00ff00', ];
