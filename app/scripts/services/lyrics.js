@@ -52,6 +52,10 @@ angular.module('frontendApp')
             selectedLyrics: [],
             selectedArtists: [],
 
+            getSong: function(id) {
+                return songs[id];
+            },
+
             getSongsTitle: function(word) {
                 var song, lyrics, i, occurences, titles = [];
                 for (i = 0; i < songs.length; i++) {

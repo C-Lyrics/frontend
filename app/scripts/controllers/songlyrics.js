@@ -8,10 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('SonglyricsCtrl', function($scope) {
-        $scope.songLyrics = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
+    .controller('SonglyricsCtrl', function($scope, $location, Lyrics) {
+        $scope.selectedSong = Lyrics.getSong(parseInt($location.search()[
+            'id']));
     });
