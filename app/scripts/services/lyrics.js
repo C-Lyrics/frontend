@@ -19,15 +19,15 @@ angular.module('frontendApp')
          */
         var songs = [{
             title: 'No Woman No Cry',
-            lyrics: 'The world is beautiful, I am high.',
+            lyrics: 'The world is beautiful, THE I am high.',
             artist: 'Bob Marley',
         }, {
             title: 'We Are the Champions',
-            lyrics: 'We are the champions, that is it.',
+            lyrics: 'We are the champions the champions, the champions that is it.',
             artist: 'Queen',
         }, {
             title: 'Sympathy for the Devil',
-            lyrics: 'Devil is cool, or am I the devil\'s advocate ?',
+            lyrics: 'Devil is cool, or am I the devil\'s advocate ? ThE',
             artist: 'Marley',
         }, {
             title: 'Yellow Submarine',
@@ -38,8 +38,10 @@ angular.module('frontendApp')
         var lyrics =
             'We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.';
         var countFrequency = function(word, lyrics) {
-            // Actually implement the count function
-            return parseInt(Math.random() * 10);
+            //change all lyrics to lowercase to allow "match" 
+            //function to add to count
+            lyrics = lyrics.toLowerCase();
+            return lyrics.split(word).length -1;
         };
 
         var selectMostFrequents = function(words, N) {
@@ -63,7 +65,7 @@ angular.module('frontendApp')
                     lyrics = song.lyrics;
                     occurences = lyrics.toLowerCase()
                         .indexOf(word);
-                    if (occurences != -1) {
+                    if (occurences !== -1) {
                         occurences = countFrequency(word, lyrics);
                         titles.push({
                             id: i,
