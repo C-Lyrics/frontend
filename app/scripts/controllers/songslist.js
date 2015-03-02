@@ -11,13 +11,15 @@ angular.module('frontendApp')
     .controller('SongslistCtrl', function($scope, $location, $routeParams,
         Lyrics) {
         var songs;
+        var artists = $routeParams.artists,
+            word = $routeParams.word;
 
-        $scope.searchWord = $routeParams.word;
+        $scope.searchWord = word;
         songs = Lyrics.getSongsTitle($scope.searchWord);
 
         $scope.songsList = songs.map(function(val, idx) {
-            val.link = window.location.origin + window.location.hash +
-                '/Lyrics/' + val.id;
+            val.link = window.location.origin + '#/' + artists +
+                '/Lyrics/' + word + '/' + val.id;
             // val.link = $location.path() + '/' + val.id;
             return val;
         });

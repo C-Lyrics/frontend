@@ -35,10 +35,6 @@ angular
                 templateUrl: 'views/songslist.html',
                 controller: 'SongslistCtrl'
             })
-            .when('/:artists/SongList/:word/Lyrics/:songId', {
-                templateUrl: 'views/songlyrics.html',
-                controller: 'SonglyricsCtrl'
-            })
             .when('/:artists/Lyrics/:word/:id', {
                 templateUrl: 'views/songlyrics.html',
                 controller: 'SonglyricsCtrl'
