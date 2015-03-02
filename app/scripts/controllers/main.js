@@ -55,7 +55,7 @@ angular.module('frontendApp')
                 return;
             }
             Lyrics.getLyrics(artist, function(songs) {
-                $scope.topWords = Lyrics.formatTop(lyrics, nbTopWords);
+                $scope.topWords = Lyrics.formatTop(songs, nbTopWords);
                 Lyrics.selectedArtists = [artist, ];
                 Lyrics.selectedLyrics = $scope.topWords;
                 updateShareUrl();
