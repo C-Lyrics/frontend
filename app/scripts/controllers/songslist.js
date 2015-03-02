@@ -9,7 +9,7 @@
  */
 angular.module('frontendApp')
     .controller('SongslistCtrl', function($scope, $location, $routeParams,
-        Lyrics) {
+        Lyrics, Server) {
         /*
          * Todo: if artists specified, then load them up with new URL.
          * (That is not very important)
@@ -28,6 +28,5 @@ angular.module('frontendApp')
             return val;
         });
 
-        // TODO: get correct link
-        $scope.cloudLink = '';
+        $scope.cloudLink = Server.URL + '?artists=' + artists;
     });

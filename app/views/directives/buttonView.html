@@ -1,1 +1,4 @@
-<button ng-click="callback();" ng-href="link" class="btn btn-primary" style="background-color:purple;">{{text}}</button>
+<span>
+    <a ng-href="{{link}}" class="btn btn-primary" style="background-color:purple;" ng-if="!!link">{{text}}</a>
+    <a ng-click="callback();" class="btn btn-primary" style="background-color:purple;" ng-if="!link">{{text}}</a>
+</span>

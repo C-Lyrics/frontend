@@ -22,7 +22,7 @@ angular.module('frontendApp')
                         scope.bg = 'white';
                     }
                     scope.words = scope.words.map(function(curr, idx) {
-                        curr.link = window.location + artists +
+                        curr.link = Server.URL + artists +
                             '/SongsList/' + curr.text;
                         return curr;
                     });

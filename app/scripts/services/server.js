@@ -9,7 +9,7 @@
  */
 angular.module('frontendApp')
     .service('Server', function() {
-        this.URL = 'http://localhost:9000/#/';
+        this.URL = 'http://localhost:9000/#!/';
         // this.server = 'http://localhost:9000/';
         this.SERVER = 'localhost';
 
