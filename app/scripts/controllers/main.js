@@ -11,7 +11,7 @@ angular.module('frontendApp')
     .controller('MainCtrl', function($scope, $location, $routeParams,
         Autocomplete, Lyrics) {
         var nbTopWords = 200,
-            updateShareUrl,
+            updateShareUrl, initAutocomplete,
             artists = $location.search()['artists'];
         $scope.shareUrl = $location.path();
         $scope.topWords = [];
@@ -27,6 +27,18 @@ angular.module('frontendApp')
         updateShareUrl = function() {
             var artists = Lyrics.selectedArtists.toString();
             $scope.shareUrl = $location.path() + '?artist=' + artists;
+        };
+
+        initAutocomplete = function() {
+            jQuery('#autocomplete')
+                .autocomplete({
+                    delay: 0,
+                    min: 2,
+                    source: $scope.suggestions,
+                    select: function(event, ui) {
+                        $scope.currentSearch = ui.item.value;
+                    }
+                });
         };
 
         if (artists) {
@@ -45,24 +57,12 @@ angular.module('frontendApp')
             }
             Autocomplete.getArtists(newVal, function(res) {
                 $scope.suggestions = res;
-                jQuery('#autocomplete')
-                    .autocomplete({
-                        source: $scope.suggestions,
-                        select: function(event, ui) {
-                            $scope.currentSearch = ui.item.value;
-                        }
-                    });
+                initAutocomplete();
             });
         });
         Autocomplete.getArtists('', function(res) {
             $scope.suggestions = res;
-            jQuery('#autocomplete')
-                .autocomplete({
-                    source: $scope.suggestions,
-                    select: function(event, ui) {
-                        $scope.currentSearch = ui.item.value;
-                    }
-                });
+            initAutocomplete();
         });
 
         $scope.generateWC = function() {
