@@ -37,9 +37,14 @@ angular.module('frontendApp')
 
         var extractWords = function(songs) {
             // Receives an array of songs, return an array of
-            // words with the stopwords stripped
+            // words with the stopwords stripped and punctuation as well.
             // http://stackoverflow.com/questions/5631422/stop-word-removal-in-javascript
-
+            return songs.map(function(val, idx) {
+                    return val.lyrics.split();
+                })
+                .reduce(function(prev, curr, idx) {
+                    return prev.concat(curr);
+                }, []);
         };
 
         var countFrequency = function(word, lyrics) {
