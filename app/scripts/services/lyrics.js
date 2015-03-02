@@ -137,13 +137,38 @@ angular.module('frontendApp')
             //change all lyrics to lowercase to allow "match"
             //function to add to count
             lyrics = lyrics.toLowerCase();
-            return lyrics.split(word)
-                .length - 1;
+            return (lyrics.split(word)
+                .length - 1);
         };
+
+        // var words = [{
+        //     text: 'The',
+        //     weight: 6,
+        // }, {
+        //     text: 'world',
+        //     weight: 1,
+        // }, {
+        //     text: 'beautiful',
+        //     weight: 1,
+        // }, {
+        //     text:'am',
+        //     weight: 2,
+        // }, ];
+
+        // use slice to copy the array instead of just making a reference
+        // will return the Objects sorted by weight
 
         var selectMostFrequents = function(words, N) {
             // TODO: Return the top N words, from the words array, which contains
             // counts and word: [{text: '', weight: int}, ...]
+            // sort according to the weight
+
+            var sortWordByWeight = words.slice(0);
+            sortWordByWeight.sort(function(a, b) {
+                return a.weight - b.weight;
+            });
+
+            words = sortWordByWeight.slice(-N);
             return words;
         };
         // Public API here
@@ -204,8 +229,8 @@ angular.module('frontendApp')
             },
 
             chooseBests: function(merger, original, N) {
-                // TODO: Actually implement the best N of both arrays
-                return original.concat(merger);
+                // TODO: what if 2 words appear twice in the lyrics ?
+                return selectMostFrequents(original.concat(merger), N);
             },
         };
     });
