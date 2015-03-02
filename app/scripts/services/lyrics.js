@@ -142,8 +142,8 @@ angular.module('frontendApp')
             },
 
             chooseBests: function(merger, original, N) {
-                // TODO: Actually implement the best N of both arrays
-                return original.concat(merger);
+                // TODO: what if 2 words appear twice in the lyrics ?
+                return selectMostFrequents(original.concat(merger), N);
             },
         };
     });
