@@ -10,11 +10,13 @@
 angular.module('frontendApp')
     .controller('MainCtrl', function($scope, $location, $routeParams,
         Autocomplete, Lyrics) {
-        var updateShareUrl,
+        var nbTopWords = 200,
+            updateShareUrl,
             artists = $location.search()['artists'];
         $scope.shareUrl = $location.path();
         $scope.topWords = [];
         $scope.suggestions = [];
+
         /*
          * TODO:
          * - Loading image
@@ -24,7 +26,11 @@ angular.module('frontendApp')
 
         if (artists) {
             artists = artists.split(',');
-            Lyrics.loadArtists(artists);
+            Lyrics.loadArtists(artists, function(songs) {
+                $scope.topWords = Lyrics.formatTop(songs, nbTopWords);
+                Lyrics.selectedLyrics = $scope.topWords;
+                updateShareUrl();
+            });
         }
 
         updateShareUrl = function() {
@@ -48,12 +54,12 @@ angular.module('frontendApp')
                 alert('Please enter an artist\'s name.');
                 return;
             }
-            Lyrics.getLyrics(artist, function(lyrics) {
-                $scope.topWords = Lyrics.formatTop(lyrics, 200);
+            Lyrics.getLyrics(artist, function(songs) {
+                $scope.topWords = Lyrics.formatTop(lyrics, nbTopWords);
+                Lyrics.selectedArtists = [artist, ];
+                Lyrics.selectedLyrics = $scope.topWords;
+                updateShareUrl();
             });
-            Lyrics.selectedArtists = [artist, ];
-            Lyrics.selectedLyrics = $scope.topWords;
-            updateShareUrl();
         };
 
         $scope.addToCloud = function() {
@@ -63,7 +69,7 @@ angular.module('frontendApp')
                 return;
             }
             Lyrics.getLyrics(artist, function(lyrics) {
-                lyrics = Lyrics.formatTop(lyrics, 200);
+                lyrics = Lyrics.formatTop(lyrics, nbTopWords);
                 lyrics = Lyrics.chooseBests(lyrics, Lyrics.selectedLyrics);
                 Lyrics.selectedLyrics = lyrics;
                 Lyrics.selectedArtists.push(artist);
