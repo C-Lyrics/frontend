@@ -2,5 +2,7 @@
 <br>
 {{selectedSong.lyrics}}
 <br />
-<a class="btn btn-default" ng-href="#/SongsList" style="background-color:purple;color:white;">Back to List</a>
-<a class="btn btn-default" ng-href="#/" style="background-color:purple;color:white;">Back to Cloud</a>
+<div class="col-sm-12 row">
+    <div c-navigation-button link="cloudLink" text="'Back to Cloud'"></div>
+    <div c-navigation-button link="listLink" text="'Back to Songs List'"></div>
+</div>

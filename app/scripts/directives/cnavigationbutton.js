@@ -11,6 +11,13 @@ angular.module('frontendApp')
         return {
             templateUrl: 'views/directives/buttonView.html',
             restrict: 'EACM',
-            link: function postLink(scope, element, attrs) {}
+            replace: true,
+            scope: {
+                link: '=link',
+                text: '=text',
+            },
+            link: function postLink(scope, element, attrs) {
+                scope.callback = undefined;
+            }
         };
     });

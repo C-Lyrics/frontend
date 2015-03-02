@@ -72,7 +72,6 @@ angular.module('frontendApp')
                         });
                     }
                 }
-                debugger
                 return titles;
             },
 

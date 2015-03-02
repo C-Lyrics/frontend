@@ -16,6 +16,8 @@ angular.module('frontendApp')
                 text: '=text',
                 callback: '=callback',
             },
-            link: function postLink(scope, element, attrs) {}
+            link: function postLink(scope, element, attrs) {
+                scope.link = undefined;
+            }
         };
     });
