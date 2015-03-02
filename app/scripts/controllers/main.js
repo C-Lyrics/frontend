@@ -24,6 +24,11 @@ angular.module('frontendApp')
          * - Submit "enter" will do launch submit button
          */
 
+        updateShareUrl = function() {
+            var artists = Lyrics.selectedArtists.toString();
+            $scope.shareUrl = $location.path() + '?artist=' + artists;
+        };
+
         if (artists) {
             artists = artists.split(',');
             Lyrics.loadArtists(artists, function(songs) {
@@ -32,11 +37,6 @@ angular.module('frontendApp')
                 updateShareUrl();
             });
         }
-
-        updateShareUrl = function() {
-            var artists = Lyrics.selectedArtists.toString();
-            $scope.shareUrl = $location.path() + '?artist=' + artists;
-        };
 
         // That's waht triggers all the ugly errors
         $scope.$watch('$scope.suggestions', function(newVal, oldVal) {

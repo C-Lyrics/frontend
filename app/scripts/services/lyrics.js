@@ -40,7 +40,7 @@ angular.module('frontendApp')
             // words with the stopwords stripped and punctuation as well.
             // http://stackoverflow.com/questions/5631422/stop-word-removal-in-javascript
             return songs.map(function(val, idx) {
-                    return val.lyrics.split();
+                    return val.lyrics.split(' ');
                 })
                 .reduce(function(prev, curr, idx) {
                     return prev.concat(curr);
@@ -130,11 +130,12 @@ angular.module('frontendApp')
             },
 
             formatTop: function(songs, N) {
-                words = extractWords(songs);
+                var words = extractWords(songs),
+                    lyrics = words.join(' ');
                 words = words.map(function(val, idx, array) {
                     return {
                         text: val,
-                        weight: countFrequency(),
+                        weight: countFrequency(val, lyrics),
                     };
                 });
                 words = selectMostFrequents(words, 200);
