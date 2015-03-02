@@ -56,6 +56,10 @@ angular.module('frontendApp')
                 return songs[id];
             },
 
+            loadArtists: function(artists) {
+
+            },
+
             getSongsTitle: function(word) {
                 var song, lyrics, i, occurences, titles = [];
                 for (i = 0; i < songs.length; i++) {
