@@ -23,7 +23,8 @@ angular.module('frontendApp')
             // var replacedsong = newsong.replace(highlightedword, '<span>$1</span>');
             // document.getElementById('highlightedwordID').innerHTML = replacedsong;
 
-            return song.replace(word, '<highlight>' + word + '</highlight>');
+            return song.lyrics.replace(word, '<mark style="">' + word +
+                '</mark>');
         };
 
         $scope.selectedSong = highlightSong(song, word);
