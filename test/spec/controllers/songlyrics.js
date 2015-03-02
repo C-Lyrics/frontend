@@ -8,10 +8,10 @@ describe('Controller: SonglyricsCtrl', function () {
   var SonglyricsCtrl,
     scope;
 
-  // test("highlightSong", function() {
-    
-  // }); 
-  // Initialize the controller and a mock scope
+  //}); 
+  //Don't need to make test for this because songlyrics calls from lyrics
+  
+  //// Initialize the controller and a mock scope
   // beforeEach(inject(function ($controller, $rootScope) {
   //   scope = $rootScope.$new();
   //   SonglyricsCtrl = $controller('SonglyricsCtrl', {

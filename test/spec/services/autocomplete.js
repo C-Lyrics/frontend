@@ -6,13 +6,13 @@ describe('Service: Autocomplete', function () {
   beforeEach(module('frontendApp'));
 
   // instantiate service
-  var Autocomplete;
-  beforeEach(inject(function (_Autocomplete_) {
-    Autocomplete = _Autocomplete_;
-  }));
+  // var Autocomplete;
+  // beforeEach(inject(function (_Autocomplete_) {
+  //   Autocomplete = _Autocomplete_;
+  // }));
 
-  it('should do something', function () {
-    expect(!!Autocomplete).toBe(false);
-  });
+  // it('should do something', function () {
+  //   expect(!!Autocomplete).toBe(false);
+  // });
 
 });
