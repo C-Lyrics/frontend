@@ -39,8 +39,8 @@ angular.module('frontendApp')
             // Receives an array of songs, return an array of
             // words with the stopwords stripped and punctuation as well.
             // http://stackoverflow.com/questions/5631422/stop-word-removal-in-javascript
-            		// get rid of stop words
-            		/*var stop_words = new Array('a', 'the', 'I', 'am');
+            // get rid of stop words
+            /*var stop_words = new Array('a', 'the', 'I', 'am');
             		var filtered  = noPunctArray.split( /\b/ ).filter( function( v ){
         				return stop_words.indexOf( v ) == -1;
   					});
@@ -48,9 +48,9 @@ angular.module('frontendApp')
       					var reg = new RegExp(noPunctArray +'\\s','gi')
       					noPunctArray = noPunctArray.replace(reg, "");
   					});
-            		
+
             		//get rid of repeated words
-            		
+
             		//return final array
                     return val.lyrics.split(' ');
              })
@@ -58,78 +58,90 @@ angular.module('frontendApp')
                     return prev.concat(curr);
             	}, []);
         };*/
-            return songs.map(function(val, idx) {  
-                    //get rid of punctuation
-                    var newStr= val.lyrics.replace(/[^A-Za-z]/g, " ");        
-                           
-                    //create initial array
-                    var initArray = newStr.split(' ');
-                    
-                    //get rid of duplicate words and some common stop words
-                    var foundWords= new Array(initArray[0]);
-                    for(var i=0; i < initArray.length; i++){
-                    	if(initArray[i] == 'the'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'I'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'am'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'is'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'it'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'are'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'he'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'she'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'we'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'you'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'me'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'they'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 'a'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 't'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	else if(initArray[i] == 's'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	if(initArray[i] == 'not'){
-                    		initArray.splice(i, 1);
-                    	}
-                    	for(var j=0; j < foundWords.length; j++){
-                    		if(initArray[i] == foundWords[j]){
-                    			initArray.splice(i, 1);
-                    		}
-                    	}
-                    	foundWords.push(initArray[i]);
+            return songs.map(function(val, idx) {
+                //get rid of punctuation
+                var newStr = val.lyrics.replace(/[^A-Za-z]/g,
+                    " ");
+
+                //create initial array
+                var initArray = newStr.split(' ');
+
+                //get rid of duplicate words and some common stop words
+                var foundWords = new Array(initArray[0]);
+                for (var i = 0; i < initArray.length; i++) {
+                    if (initArray[i].toLowerCase() === 'the') {
+                        initArray.splice(i, 1);
                     }
-                    
-                    //return final array of words to show up in cloud
-                    return initArray;
-             })
-            
+                    else if (initArray[i].toLowerCase() === 'I') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'am') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'is') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'it') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'are') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'he') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'she') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'we') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'you') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'me') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'they') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() === 'a') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() === 't') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() === 's') {
+                        initArray.splice(i, 1);
+                    }
+                    else if (initArray[i].toLowerCase() ===
+                        'not') {
+                        initArray.splice(i, 1);
+                    }
+                    for (var j = 0; j < foundWords.length; j++) {
+                        if (initArray[i] == foundWords[j]) {
+                            initArray.splice(i, 1);
+                        }
+                    }
+                    foundWords.push(initArray[i]);
+                }
+
+                //return final array of words to show up in cloud
+                return initArray;
+            })
+
             .reduce(function(prev, curr, idx) {
-                    return prev.concat(curr);
+                return prev.concat(curr);
             }, []);
         };
 
@@ -224,7 +236,7 @@ angular.module('frontendApp')
                         weight: countFrequency(val, lyrics),
                     };
                 });
-                words = selectMostFrequents(words, 200);
+                words = selectMostFrequents(words, N);
                 return words;
             },
 

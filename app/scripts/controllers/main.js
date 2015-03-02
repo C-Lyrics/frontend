@@ -39,16 +39,30 @@ angular.module('frontendApp')
         }
 
         // That's waht triggers all the ugly errors
-        // $scope.$watch('$scope.suggestions', function(newVal, oldVal) {
-        //     if (newVal === oldVal) {
-        //         return;
-        //     }
-        //     Autocomplete.getArtists(newVal, function(res) {
-        //         $scope.suggestions = res;
-        //     });
-        // });
+        $scope.$watch('$scope.suggestions', function(newVal, oldVal) {
+            if (newVal === oldVal) {
+                return;
+            }
+            Autocomplete.getArtists(newVal, function(res) {
+                $scope.suggestions = res;
+                jQuery('#autocomplete')
+                    .autocomplete({
+                        source: $scope.suggestions,
+                        select: function(event, ui) {
+                            $scope.currentSearch = ui.item.value;
+                        }
+                    });
+            });
+        });
         Autocomplete.getArtists('', function(res) {
             $scope.suggestions = res;
+            jQuery('#autocomplete')
+                .autocomplete({
+                    source: $scope.suggestions,
+                    select: function(event, ui) {
+                        $scope.currentSearch = ui.item.value;
+                    }
+                });
         });
 
         $scope.generateWC = function() {
@@ -66,7 +80,8 @@ angular.module('frontendApp')
         };
 
         $scope.addToCloud = function() {
-            var artist = $scope.currentSearch;
+            var artist = jQuery('#autocomplete')
+                .val();
             if (!artist) {
                 alert('Please enter an artist\'s name.');
                 return;
