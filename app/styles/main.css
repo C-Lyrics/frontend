@@ -79,7 +79,7 @@ body {
 }
 
 /* MAIN PAGE AESTHETICS */
-#could-space{
+#cloud-space{
     width: 500px;
     height: 500px;
     background-color: white;
@@ -89,4 +89,7 @@ body {
     height: 30px;
     border: 1px solid purple;
 }
+.highlight { 
+  background-color: yellow
+};
 
