@@ -17,23 +17,6 @@ angular.module('frontendApp')
          *   artist: ''
          * }, ...]
          */
-        var songsSaved = [{
-            title: 'No Woman No Cry',
-            lyrics: 'The world is beautiful, THE I am high.',
-            artist: 'Bob Marley',
-        }, {
-            title: 'We Are the Champions',
-            lyrics: 'We are the champions the champions, the champions that is it.',
-            artist: 'Queen',
-        }, {
-            title: 'Sympathy for the Devil',
-            lyrics: 'Devil is cool, or am I the devil\'s advocate ? ThE',
-            artist: 'Marley',
-        }, {
-            title: 'Yellow Submarine',
-            lyrics: 'I do not live in a yellow submarine but who cares, rigth ?',
-            artist: 'The Beatles',
-        }, ];
 
         var serverUrl = Server.SERVER + 'getSongs/';
 
@@ -129,7 +112,8 @@ angular.module('frontendApp')
             //change all lyrics to lowercase to allow "match"
             //function to add to count
             lyrics = lyrics.toLowerCase();
-            return (lyrics.split(word).length - 1);
+            return (lyrics.split(word)
+                .length - 1);
         };
 
         var selectMostFrequents = function(words, N) {
@@ -191,6 +175,10 @@ angular.module('frontendApp')
                     cache: true
                 })
                     .then(function(data) {
+                        if (data.data.error) {
+                            return alert('No results found');
+                        }
+                        debugger
                         var songs = data.data.map(function(val, idx) {
                             return {
                                 title: val[1],
