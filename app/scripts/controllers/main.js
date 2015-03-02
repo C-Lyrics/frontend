@@ -29,6 +29,7 @@ angular.module('frontendApp')
             });
         });
 
+        // The recurisivity problem all over again.
         $scope.$watch('Lyrics.selectedArtists', function(oldValue, newVal) {
             $routeParams.artists = Lyrics.selectedArtists.toString();
             // $location.search('artists', Lyrics.selectedArtists.toString())
