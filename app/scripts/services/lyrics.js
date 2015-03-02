@@ -55,9 +55,34 @@ angular.module('frontendApp')
                 .length - 1);
         };
 
+        // var words = [{
+        //     text: 'The',
+        //     weight: 6,
+        // }, {
+        //     text: 'world',
+        //     weight: 1,
+        // }, {
+        //     text: 'beautiful',
+        //     weight: 1,
+        // }, {
+        //     text:'am',
+        //     weight: 2,
+        // }, ];
+
+        // use slice to copy the array instead of just making a reference
+        // will return the Objects sorted by weight
+
         var selectMostFrequents = function(words, N) {
             // TODO: Return the top N words, from the words array, which contains
             // counts and word: [{text: '', weight: int}, ...]
+            // sort according to the weight
+
+            var sortWordByWeight = words.slice(0);
+            sortWordByWeight.sort(function(a, b) {
+                return a.weight - b.weight;
+            });
+
+            words = sortWordByWeight.slice(-N);
             return words;
         };
         // Public API here
