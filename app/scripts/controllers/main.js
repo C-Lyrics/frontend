@@ -55,8 +55,9 @@ angular.module('frontendApp')
                 return;
             }
             Lyrics.getLyrics(artist, function(songs) {
-                $scope.topWords = Lyrics.formatTop(songs, nbTopWords);
                 Lyrics.selectedArtists = [artist, ];
+                debugger
+                $scope.topWords = Lyrics.formatTop(songs, nbTopWords);
                 Lyrics.selectedLyrics = $scope.topWords;
                 updateShareUrl();
             });
@@ -69,10 +70,10 @@ angular.module('frontendApp')
                 return;
             }
             Lyrics.getLyrics(artist, function(lyrics) {
+                Lyrics.selectedArtists.push(artist);
                 lyrics = Lyrics.formatTop(lyrics, nbTopWords);
                 lyrics = Lyrics.chooseBests(lyrics, Lyrics.selectedLyrics);
                 Lyrics.selectedLyrics = lyrics;
-                Lyrics.selectedArtists.push(artist);
                 $scope.topWords = lyrics;
                 updateShareUrl();
             });

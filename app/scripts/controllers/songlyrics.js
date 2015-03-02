@@ -21,7 +21,7 @@ angular.module('frontendApp')
 
 
         $scope.selectedSong = highlightSong(song, word);
-        // TODO: Keep the artists and selected word in the url.
+        // TODO: Fetch artists and songs if given, else redirect to homepage
         $scope.cloudLink = Server.URL + '#/?artists=';
         $scope.listLink =
             Server.URL + '#/?word=';
