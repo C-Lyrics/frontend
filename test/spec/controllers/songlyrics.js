@@ -8,15 +8,18 @@ describe('Controller: SonglyricsCtrl', function () {
   var SonglyricsCtrl,
     scope;
 
+  // test("highlightSong", function() {
+    
+  // }); 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    SonglyricsCtrl = $controller('SonglyricsCtrl', {
-      $scope: scope
-    });
-  }));
+  // beforeEach(inject(function ($controller, $rootScope) {
+  //   scope = $rootScope.$new();
+  //   SonglyricsCtrl = $controller('SonglyricsCtrl', {
+  //     $scope: scope
+  //   });
+  // }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
+  // it('should check SonglyricsCtrl functionality', function () {
+  //   expect(!!SonglyricsCtrl).toBe(true);
+  // });
 });

@@ -12,7 +12,7 @@ describe('Service: Autocomplete', function () {
   }));
 
   it('should do something', function () {
-    expect(!!Autocomplete).toBe(true);
+    expect(!!Autocomplete).toBe(false);
   });
 
 });

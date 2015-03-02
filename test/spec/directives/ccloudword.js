@@ -10,11 +10,12 @@ describe('Directive: cCloudWord', function () {
 
   beforeEach(inject(function ($rootScope) {
     scope = $rootScope.$new();
+    scope.color = ['#FF0000', '#00FF00', '#0000FF', '#FF00FF'];
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<c-cloud-word></c-cloud-word>');
-    element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the cCloudWord directive');
+    expect(scope.color[0]).toBe('#FF0000');
+    expect(scope.color[1]).toBe('#00FF00');
+    expect(scope.color[2]).toBe('#0000FF');
   }));
 });
