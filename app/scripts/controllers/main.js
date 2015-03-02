@@ -39,13 +39,16 @@ angular.module('frontendApp')
         }
 
         // That's waht triggers all the ugly errors
-        $scope.$watch('$scope.suggestions', function(newVal, oldVal) {
-            if (newVal === oldVal) {
-                return;
-            }
-            Autocomplete.getArtists(newVal, function(res) {
-                $scope.suggestions = res;
-            });
+        // $scope.$watch('$scope.suggestions', function(newVal, oldVal) {
+        //     if (newVal === oldVal) {
+        //         return;
+        //     }
+        //     Autocomplete.getArtists(newVal, function(res) {
+        //         $scope.suggestions = res;
+        //     });
+        // });
+        Autocomplete.getArtists('', function(res) {
+            $scope.suggestions = res;
         });
 
         $scope.generateWC = function() {
