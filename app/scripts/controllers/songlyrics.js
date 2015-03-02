@@ -14,6 +14,7 @@ angular.module('frontendApp')
             word = $routeParams.word,
             song = Lyrics.getSong(parseInt($routeParams.id)),
             artists = $routeParams.artists;
+            
         highlightSong = function(song, word) {
             // Change the lyrics so that it highlights the search words.
             // Use Regexp to do that !

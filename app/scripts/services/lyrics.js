@@ -129,8 +129,7 @@ angular.module('frontendApp')
             //change all lyrics to lowercase to allow "match"
             //function to add to count
             lyrics = lyrics.toLowerCase();
-            return (lyrics.split(word)
-                .length - 1);
+            return (lyrics.split(word).length - 1);
         };
 
         var selectMostFrequents = function(words, N) {

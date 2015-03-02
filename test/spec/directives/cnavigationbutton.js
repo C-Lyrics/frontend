@@ -7,14 +7,14 @@ describe('Directive: cNavigationButton', function () {
 
   var element,
     scope;
+    //not testing the callbacks
+  // beforeEach(inject(function ($rootScope) {
+  //   scope = $rootScope.$new();
+  // }));
 
-  beforeEach(inject(function ($rootScope) {
-    scope = $rootScope.$new();
-  }));
-
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<c-navigation-button></c-navigation-button>');
-    element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the cNavigationButton directive');
-  }));
+  // it('should make hidden element visible', inject(function ($compile) {
+  //   element = angular.element('<c-navigation-button></c-navigation-button>');
+  //   element = $compile(element)(scope);
+  //   expect(element.text()).toBe('this is the cNavigationButton directive');
+  // }));
 });
