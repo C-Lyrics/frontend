@@ -19,93 +19,109 @@ angular.module('frontendApp')
          */
 
         var serverUrl = Server.SERVER + 'getSongs/';
+        var songsSaved = [];
+
+        // var extractWords = function(songs) {
+        //     return songs.map(function(val, idx) {
+        //         //get rid of punctuation
+        //         var newStr = val.lyrics.replace(/[^A-Za-z]/g,
+        //             " ");
+
+        //         //create initial array
+        //         var initArray = newStr.split(' ');
+
+        //         //get rid of duplicate words and some common stop words
+        //         var foundWords = new Array(initArray[0]);
+        //         for (var i = 0; i < initArray.length; i++) {
+        //             if (initArray[i].toLowerCase() === 'the') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() === 'I') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'am') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'is') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'it') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'are') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'he') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'she') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'we') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'you') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'me') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'they') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() === 'a') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() === 't') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() === 's') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             else if (initArray[i].toLowerCase() ===
+        //                 'not') {
+        //                 initArray.splice(i, 1);
+        //             }
+        //             for (var j = 0; j < foundWords.length; j++) {
+        //                 if (initArray[i] == foundWords[j]) {
+        //                     initArray.splice(i, 1);
+        //                 }
+        //             }
+        //             foundWords.push(initArray[i]);
+        //         }
+
+        //         //return final array of words to show up in cloud
+        //         return initArray;
+        //     })
+
+        //     .reduce(function(prev, curr, idx) {
+        //         return prev.concat(curr);
+        //     }, []);
+        // };
 
         var extractWords = function(songs) {
-            return songs.map(function(val, idx) {
-                //get rid of punctuation
-                var newStr = val.lyrics.replace(/[^A-Za-z]/g,
-                    " ");
-
-                //create initial array
-                var initArray = newStr.split(' ');
-
-                //get rid of duplicate words and some common stop words
-                var foundWords = new Array(initArray[0]);
-                for (var i = 0; i < initArray.length; i++) {
-                    if (initArray[i].toLowerCase() === 'the') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() === 'I') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'am') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'is') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'it') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'are') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'he') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'she') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'we') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'you') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'me') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'they') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() === 'a') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() === 't') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() === 's') {
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'not') {
-                        initArray.splice(i, 1);
-                    }
-                    for (var j = 0; j < foundWords.length; j++) {
-                        if (initArray[i] == foundWords[j]) {
-                            initArray.splice(i, 1);
-                        }
-                    }
-                    foundWords.push(initArray[i]);
-                }
-
-                //return final array of words to show up in cloud
-                return initArray;
+            var i, song, lyrics = [];
+            for (i = 0; i < songs.length; i++) {
+                song = songs[i].lyrics;
+                song = song.replace(
+                    /\s(the|am|I|are|not|t|they|me|you|he|she|he|are|it|if|is|or|o|a|don|about|above|after|again|against|all|and|any|aren|as|act|herself|have|from|during|each|few|for|how|was|were|very|too|to|two|one|your|re|let|s|only|myself|other|ours|same|that|these|those|this|them|then|their|under|until|ve|why|us|an|in|on|do)\s/gi,
+                    '');
+                lyrics = lyrics.concat(song.split(' '));
+            }
+            lyrics = lyrics.filter(function(item, pos) {
+                return lyrics.indexOf(item) == pos;
             })
-
-            .reduce(function(prev, curr, idx) {
-                return prev.concat(curr);
-            }, []);
+            return lyrics;
         };
 
         var countFrequency = function(word, lyrics) {
@@ -175,10 +191,10 @@ angular.module('frontendApp')
                     cache: true
                 })
                     .then(function(data) {
-                        if (data.data.error) {
-                            return alert('No results found');
+                        if (!!data.data.error) {
+                            alert('No results found');
+                            return;
                         }
-                        debugger
                         var songs = data.data.map(function(val, idx) {
                             return {
                                 title: val[1],

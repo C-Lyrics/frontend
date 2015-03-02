@@ -84,6 +84,7 @@ angular.module('frontendApp')
             $scope.waitingMessage =
                 'Please wait, as loading the lyrics takes about 1 second per song.';
             Lyrics.getLyrics(artist, function(songs) {
+                debugger
                 $scope.waitingMessage = '';
                 Lyrics.selectedArtists = [artist, ];
                 $scope.topWords = Lyrics.formatTop(songs, nbTopWords);
