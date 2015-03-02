@@ -10,6 +10,8 @@
 angular.module('frontendApp')
     .controller('MainCtrl', function($scope, $location, $routeParams,
         Autocomplete, Lyrics) {
+        $('form')
+            .submit(false);
         var nbTopWords = 200,
             updateShareUrl, initAutocomplete,
             artists = $location.search()['artists'];
@@ -37,7 +39,10 @@ angular.module('frontendApp')
                     source: $scope.suggestions,
                     select: function(event, ui) {
                         $scope.currentSearch = ui.item.value;
-                    }
+                    },
+                    change: function(event, ui) {
+                        $scope.currentSearch = ui.item.value;
+                    },
                 });
         };
 
@@ -51,7 +56,7 @@ angular.module('frontendApp')
         }
 
         // That's waht triggers all the ugly errors
-        $scope.$watch('$scope.suggestions', function(newVal, oldVal) {
+        $scope.$watch('searchWord', function(newVal, oldVal) {
             if (newVal === oldVal) {
                 return;
             }
@@ -71,7 +76,10 @@ angular.module('frontendApp')
                 alert('Please enter an artist\'s name.');
                 return;
             }
+            $scope.waitingMessage =
+                'Please wait, as loading the lyrics takes about 1 second per song.';
             Lyrics.getLyrics(artist, function(songs) {
+                $scope.waitingMessage = '';
                 Lyrics.selectedArtists = [artist, ];
                 $scope.topWords = Lyrics.formatTop(songs, nbTopWords);
                 Lyrics.selectedLyrics = $scope.topWords;
@@ -86,7 +94,10 @@ angular.module('frontendApp')
                 alert('Please enter an artist\'s name.');
                 return;
             }
+            $scope.waitingMessage =
+                'Please wait, as loading the lyrics takes about 1 second per song.';
             Lyrics.getLyrics(artist, function(lyrics) {
+                $scope.waitingMessage = '';
                 Lyrics.selectedArtists.push(artist);
                 lyrics = Lyrics.formatTop(lyrics, nbTopWords);
                 lyrics = Lyrics.chooseBests(lyrics, Lyrics.selectedLyrics);

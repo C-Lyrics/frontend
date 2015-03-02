@@ -8,7 +8,7 @@
  * Factory in the frontendApp.
  */
 angular.module('frontendApp')
-    .factory('Lyrics', function($http) {
+    .factory('Lyrics', function($http, Server) {
         /*
          * The way we store songs is as a list of JS objects:
          * [{
@@ -17,7 +17,7 @@ angular.module('frontendApp')
          *   artist: ''
          * }, ...]
          */
-        var songs = [{
+        var songsSaved = [{
             title: 'No Woman No Cry',
             lyrics: 'The world is beautiful, THE I am high.',
             artist: 'Bob Marley',
@@ -35,29 +35,9 @@ angular.module('frontendApp')
             artist: 'The Beatles',
         }, ];
 
+        var serverUrl = Server.SERVER + 'getSongs/';
+
         var extractWords = function(songs) {
-            // Receives an array of songs, return an array of
-            // words with the stopwords stripped and punctuation as well.
-            // http://stackoverflow.com/questions/5631422/stop-word-removal-in-javascript
-            // get rid of stop words
-            /*var stop_words = new Array('a', 'the', 'I', 'am');
-            		var filtered  = noPunctArray.split( /\b/ ).filter( function( v ){
-        				return stop_words.indexOf( v ) == -1;
-  					});
-            		stop_words.forEach(function(noPunctArray) {
-      					var reg = new RegExp(noPunctArray +'\\s','gi')
-      					noPunctArray = noPunctArray.replace(reg, "");
-  					});
-
-            		//get rid of repeated words
-
-            		//return final array
-                    return val.lyrics.split(' ');
-             })
-                .reduce(function(prev, curr, idx) {
-                    return prev.concat(curr);
-            	}, []);
-        };*/
             return songs.map(function(val, idx) {
                 //get rid of punctuation
                 var newStr = val.lyrics.replace(/[^A-Za-z]/g,
@@ -153,23 +133,6 @@ angular.module('frontendApp')
                 .length - 1);
         };
 
-        // var words = [{
-        //     text: 'The',
-        //     weight: 6,
-        // }, {
-        //     text: 'world',
-        //     weight: 1,
-        // }, {
-        //     text: 'beautiful',
-        //     weight: 1,
-        // }, {
-        //     text:'am',
-        //     weight: 2,
-        // }, ];
-
-        // use slice to copy the array instead of just making a reference
-        // will return the Objects sorted by weight
-
         var selectMostFrequents = function(words, N) {
             // TODO: Return the top N words, from the words array, which contains
             // counts and word: [{text: '', weight: int}, ...]
@@ -189,7 +152,7 @@ angular.module('frontendApp')
             selectedArtists: [],
 
             getSong: function(id) {
-                return songs[id];
+                return songsSaved[id];
             },
 
             loadArtists: function(artists, callback) {
@@ -198,15 +161,15 @@ angular.module('frontendApp')
                 for (i = 0; i < artists.length; i++) {
                     artist = artists[i];
                     this.getLyrics(artist, function() {
-                        callback(songs);
+                        callback(songsSaved);
                     });
                 }
             },
 
             getSongsTitle: function(word) {
                 var song, lyrics, i, occurences, titles = [];
-                for (i = 0; i < songs.length; i++) {
-                    song = songs[i];
+                for (i = 0; i < songsSaved.length; i++) {
+                    song = songsSaved[i];
                     lyrics = song.lyrics;
                     occurences = lyrics.toLowerCase()
                         .indexOf(word);
@@ -224,7 +187,21 @@ angular.module('frontendApp')
 
             getLyrics: function(artist, callback) {
                 // Don't forget to save the lyrics in the songs variable.
-                callback(songs);
+                var url = serverUrl + artist;
+                $http.get(url, {
+                    cache: true
+                })
+                    .then(function(data) {
+                        var songs = data.data.map(function(val, idx) {
+                            return {
+                                title: val[1],
+                                artist: val[0],
+                                lyrics: val[2],
+                            };
+                        });
+                        songsSaved = songsSaved.concat(songs);
+                        callback(songs);
+                    }, Server.errorHandler);
             },
 
             formatTop: function(songs, N) {
