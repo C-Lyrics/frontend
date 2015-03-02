@@ -1,20 +1,28 @@
-<h3>{{searchWord}}</h3>
-<table class="table ">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Count</th>
-        </tr>
-    </thead>
-    <tr ng-repeat="song in songsList|orderBy:'count':true">
-        <td>
-        <a ng-href="#/SongLyrics?id={{song.id}}">
-            {{song.title}}
-        </a>
-        </td>
-        <td>{{song.count}}</td>
-    </tr>
-</table>
-<div class="col-sm-12 row">
-    <div c-navigation-button link="cloudLink" text="'Back to Cloud'"></div>
+<div class="col-sm-12">
+    <h3>{{searchWord}}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="song in songsList|orderBy:'count':true">
+                <td>
+                    <a ng-href="{{song.link}}">
+                        {{song.title}}
+                    </a>
+                </td>
+                <td>
+                    <b>
+                        {{song.count}}
+                    </b>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-sm-12 row">
+        <div c-navigation-button link="cloudLink" text="'Back to Cloud'"></div>
+    </div>
 </div>

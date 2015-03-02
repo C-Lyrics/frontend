@@ -7,7 +7,7 @@
  * # cCloudWord
  */
 angular.module('frontendApp')
-    .directive('cCloudWord', function(Server) {
+    .directive('cCloudWord', function($location, Server) {
         return {
             templateUrl: 'views/directives/cWordCloud.html',
             restrict: 'EACM',
@@ -18,8 +18,8 @@ angular.module('frontendApp')
                 // TODO: Make colors work.
                 scope.$watch('words', function(oldVal, newVal) {
                     scope.words = scope.words.map(function(curr, idx) {
-                        curr.link = Server.URL + 'SongsList/?word=' +
-                            curr.text;
+                        curr.link = window.location +
+                            '/SongsList/' + curr.text;
                         return curr;
                     });
 

@@ -21,21 +21,32 @@ angular
         'autocomplete',
         'angular-jqcloud',
     ])
-    .config(function($routeProvider) {
+    .config(function($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
-            .when('/SongsList', {
+            .when('/:artists', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
+            })
+            .when('/:artists/SongsList/:word', {
                 templateUrl: 'views/songslist.html',
                 controller: 'SongslistCtrl'
             })
-            .when('/SongLyrics', {
+            .when('/:artists/SongList/:word/Lyrics/:songId', {
+                templateUrl: 'views/songlyrics.html',
+                controller: 'SonglyricsCtrl'
+            })
+            .when('/:artists/Lyrics/:word/:id', {
                 templateUrl: 'views/songlyrics.html',
                 controller: 'SonglyricsCtrl'
             })
             .otherwise({
                 redirectTo: '/'
             });
+
+        // $locationProvider.html5Mode(false)
+        //     .hashPrefix('!');
     });

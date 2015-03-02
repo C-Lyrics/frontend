@@ -8,7 +8,20 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('SongslistCtrl', function($scope, $location, Lyrics) {
-        $scope.searchWord = $location.search()['word'];
-        $scope.songsList = Lyrics.getSongsTitle($scope.searchWord);
+    .controller('SongslistCtrl', function($scope, $location, $routeParams,
+        Lyrics) {
+        var songs;
+
+        $scope.searchWord = $routeParams.word;
+        songs = Lyrics.getSongsTitle($scope.searchWord);
+
+        $scope.songsList = songs.map(function(val, idx) {
+            val.link = window.location.origin + window.location.hash +
+                '/Lyrics/' + val.id;
+            // val.link = $location.path() + '/' + val.id;
+            return val;
+        });
+
+        // TODO: get correct link
+        $scope.cloudLink = 'Get link from $routeParams';
     });

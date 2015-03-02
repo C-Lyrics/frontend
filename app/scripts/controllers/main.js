@@ -8,7 +8,8 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('MainCtrl', function($scope, $location, Autocomplete, Lyrics) {
+    .controller('MainCtrl', function($scope, $location, $routeParams,
+        Autocomplete, Lyrics) {
         $scope.currentUrl = $location.path();
         $scope.topWords = [];
         $scope.suggestions = [];
@@ -18,14 +19,19 @@ angular.module('frontendApp')
          * - Error message if there is one
          */
 
+        // That's waht triggers all the ugly errors
         $scope.$watch('$scope.suggestions', function(newVal, oldVal) {
+            if (newVal === oldVal) {
+                return;
+            }
             Autocomplete.getArtists(newVal, function(res) {
                 $scope.suggestions = res;
             });
         });
 
         $scope.$watch('Lyrics.selectedArtists', function(oldValue, newVal) {
-            $location.search('artists', Lyrics.selectedArtists.toString())
+            $routeParams.artists = Lyrics.selectedArtists.toString();
+            // $location.search('artists', Lyrics.selectedArtists.toString())
         });
 
         $scope.generateWC = function() {
