@@ -15,8 +15,12 @@ angular.module('frontendApp')
                 words: '=words',
             },
             link: function postLink(scope, element, attrs) {
-                // TODO: Make colors work.
+                scope.bg= 'white';
                 scope.$watch('words', function(oldVal, newVal) {
+                    
+                	if(scope.words.length){
+                		scope.bg= 'white';
+               		}
                     scope.words = scope.words.map(function(curr, idx) {
                         curr.link = window.location +
                             '/SongsList/' + curr.text;
@@ -24,8 +28,8 @@ angular.module('frontendApp')
                     });
 
                 });
-                scope.width = 750;
-                scope.colors = ['#ffffff', '#000000', '#223344', '#00ff00', ];
+                scope.width = 250;
+                scope.color = ['#FF0000', '#00FF00', '#0000FF', '#FF00FF'];
             }
         };
     });
