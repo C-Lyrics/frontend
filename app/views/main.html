@@ -8,11 +8,26 @@
   <div class="col-md-12 col-md-offset-0 row" style="margin:20px;">
 
     <div class="col-md-5">
-      <!-- <autocomplete data="suggestions" ng-model="currentSearch"></autocomplete> -->
-      <input type="text" ng-model="currentSearch" typeahead="state for state in states" class="form-control" />
+      <form ng-submit="generateWC();">
+        <input type="text" ng-model="currentSearch" id="autocomplete" class="form-control" />
+      </form>
     </div>
     <div c-action-button callback="generateWC" text="'Submit'"></div>
     <div c-action-button callback="addToCloud" text="'Add to Cloud'"></div>
     <div class="fb-share-button" data-href="{{shareUrl}}" data-layout="button_count"></div>
   </div>
 </div>
+<style>
+  .ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+/* IE 6 doesn't support max-height
+* we use height instead, but this forces the menu to always be this tall
+*/
+* html .ui-autocomplete {
+  height: 100px;
+}
+</style>
