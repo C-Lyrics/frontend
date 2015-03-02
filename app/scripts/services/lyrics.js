@@ -51,12 +51,13 @@ angular.module('frontendApp')
             //change all lyrics to lowercase to allow "match"
             //function to add to count
             lyrics = lyrics.toLowerCase();
-            return lyrics.split(word).length - 1;
+            return (lyrics.split(word)
+                .length - 1);
         };
 
         // var words = [{
         //     text: 'The',
-        //     weight: 6, 
+        //     weight: 6,
         // }, {
         //     text: 'world',
         //     weight: 1,
@@ -75,9 +76,9 @@ angular.module('frontendApp')
             // TODO: Return the top N words, from the words array, which contains
             // counts and word: [{text: '', weight: int}, ...]
             // sort according to the weight
-           
+
             var sortWordByWeight = words.slice(0);
-            sortWordByWeight.sort(function(a,b){
+            sortWordByWeight.sort(function(a, b) {
                 return a.weight - b.weight;
             });
 

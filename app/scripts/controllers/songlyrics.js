@@ -11,8 +11,8 @@ angular.module('frontendApp')
     .controller('SonglyricsCtrl', function($scope, $routeParams, Lyrics, Server) {
         var highlightSong,
             word = $routeParams.word,
-            song = Lyrics.getSong(parseInt($routeParams.id));
-    
+            song = Lyrics.getSong(parseInt($routeParams.id)),
+            artists = $routeParams.artists;
         highlightSong = function(song, word) {
             // Change the lyrics so that it highlights the search words.
             // Use Regexp to do that !
@@ -21,9 +21,9 @@ angular.module('frontendApp')
         };
 
         $scope.selectedSong = highlightSong(song, word);
+
+        // TODO: Fetch artists and songs if given, else redirect to homepage
+        $scope.cloudLink = '#!/?artists=' + artists;
+        $scope.listLink = Server.URL + artists + '/SongsList/' + word;
         $scope.title = song.title;
-        // TODO: Keep the artists and selected word in the url.
-        $scope.cloudLink = Server.URL + '#/?artists=';
-        $scope.listLink =
-            Server.URL + '#/?word=';
     });
