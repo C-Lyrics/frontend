@@ -1,4 +1,4 @@
-<div class="col-sm-12">
+<div class="col-sm-12 wc-view">
   <form ng-submit="generateWC()">
     <div c-cloud-word words="topWords" class="col-sm-12"></div>
   </form>
@@ -12,6 +12,6 @@
     </div>
     <div c-action-button callback="generateWC" text="'Submit'"></div>
     <div c-action-button callback="addToCloud" text="'Add to Cloud'"></div>
-    <div class="fb-share-button" data-href="{{currentUrl}}" data-layout="button_count"></div>
+    <div class="fb-share-button" data-href="{{shareUrl}}" data-layout="button_count"></div>
   </div>
 </div>

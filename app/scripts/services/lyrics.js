@@ -35,13 +35,24 @@ angular.module('frontendApp')
             artist: 'The Beatles',
         }, ];
 
-        var lyrics =
-            'We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.We are the chmpaions, the best of the world. Yes we are.';
+        var extractWords = function(songs) {
+            // Receives an array of songs, return an array of
+            // words with the stopwords stripped and punctuation as well.
+            // http://stackoverflow.com/questions/5631422/stop-word-removal-in-javascript
+            return songs.map(function(val, idx) {
+                    return val.lyrics.split();
+                })
+                .reduce(function(prev, curr, idx) {
+                    return prev.concat(curr);
+                }, []);
+        };
+
         var countFrequency = function(word, lyrics) {
-            //change all lyrics to lowercase to allow "match" 
+            //change all lyrics to lowercase to allow "match"
             //function to add to count
             lyrics = lyrics.toLowerCase();
-            return lyrics.split(word).length -1;
+            return lyrics.split(word)
+                .length - 1;
         };
 
         // var words = [{
@@ -83,6 +94,17 @@ angular.module('frontendApp')
                 return songs[id];
             },
 
+            loadArtists: function(artists, callback) {
+                var i, artist;
+                this.selectedArtists = artists;
+                for (i = 0; i < artists.length; i++) {
+                    artist = artists[i];
+                    this.getLyrics(artist, function() {
+                        callback(songs);
+                    });
+                }
+            },
+
             getSongsTitle: function(word) {
                 var song, lyrics, i, occurences, titles = [];
                 for (i = 0; i < songs.length; i++) {
@@ -102,13 +124,13 @@ angular.module('frontendApp')
                 return titles;
             },
 
-            getLyrics: function(word, callback) {
-                callback(lyrics);
+            getLyrics: function(artist, callback) {
+                // Don't forget to save the lyrics in the songs variable.
+                callback(songs);
             },
 
-            formatTop: function(words, N) {
-                // TODO: count the words, strip stopwords and punctuation, only select best 200
-                words = words.split(' ');
+            formatTop: function(songs, N) {
+                words = extractWords(songs);
                 words = words.map(function(val, idx, array) {
                     return {
                         text: val,
