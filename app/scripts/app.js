@@ -18,7 +18,6 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'autocomplete',
         'angular-jqcloud',
     ])
     .config(function($routeProvider, $locationProvider) {

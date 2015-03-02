@@ -9,7 +9,10 @@
  */
 angular.module('frontendApp')
     .factory('Autocomplete', function($http, Server) {
-        var artists = ['Marley', 'Stones', 'Beatles'];
+        var artists = ['Marley', 'Stones', 'Marley', 'Stones', 'Marley',
+            'Stones', 'Marley', 'Stones', 'Marley', 'Stones', 'Marley',
+            'Stones', 'Marley', 'Stones', 'Beatles'
+        ];
 
         // Public API here
         return {
