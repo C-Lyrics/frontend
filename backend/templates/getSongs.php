@@ -9,18 +9,22 @@ $url = $defaultPage . "/" . 'a' . "/" . $newArtist . "/";
 //Gets the list of song urls
 //each song url will contain the lyrics for that song
 function findSongUrls($urlPage) {
-    $html = file_get_html($urlPage);
-    $table = $html->find('table', 1);
-    $songUrls = array();
+    try{
+        $html = file_get_html($urlPage);
+        $table = $html->find('table', 1);
+        $songUrls = array();
 
-    foreach($table->find('tr') as $row) {
-        foreach($row->find('td[class=colfirst]') as $value) {
-            foreach($value->find('a') as $link)
-                array_push($songUrls, $link->href);
+        foreach($table->find('tr') as $row) {
+            foreach($row->find('td[class=colfirst]') as $value) {
+                foreach($value->find('a') as $link)
+                    array_push($songUrls, $link->href);
+            }
         }
-    }
 
-    return $songUrls;
+        return $songUrls;
+    } catch (Exception $e) {
+        
+    }
 }
 
 //this is the part that takes too long
@@ -44,6 +48,10 @@ function findLyrics($urlList, $defaultPage) {
 }
 
 $songs = findSongUrls($url);
-$lyrics = findLyrics($songs, $defaultPage);
+if(count($songs) != 0) {
+    $lyrics = findLyrics($songs, $defaultPage);
 
-echo json_encode($lyrics);
+    echo json_encode($lyrics);
+} else {
+    echo "Unknown Artist";
+}
