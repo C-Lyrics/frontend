@@ -18,7 +18,7 @@
 -->
 <!-- build:css(.tmp) styles/main.css -->
 <link rel="stylesheet" href="styles/main.css" />
-<link rel="stylesheet" href="styles/autocomplete.css" />
+<link rel="stylesheet" href="styles/jquery-ui.min.css" />
 <link rel="stylesheet" href="bower_components/jqcloud2/dist/jqcloud.min.css" />
 <!-- endbuild -->
 </head>
@@ -29,15 +29,15 @@
 
       <!-- Add your site or application content here -->
       <div class="container">
-        <div class="header">
+        <!-- <div class="header">
           <h3 class="text-muted">C-Lyrics</h3>
-        </div>
+        </div> -->
 
         <div ng-view=""></div>
 
-        <div class="footer">
+        <!-- <div class="footer">
           <p><span class="glyphicon glyphicon-heart"></span> from the C-Lyrics team</p>
-        </div>
+        </div> -->
       </div>
 
       <div id="fb-root"></div>
@@ -76,9 +76,11 @@
     <script src="bower_components/angular-jqcloud/angular-jqcloud.js"></script>
 
   -->
+
   <script src="bower_components/jqcloud2/dist/jqcloud.min.js"></script>
   <script src="bower_components/angular-jqcloud/angular-jqcloud.js"></script>
-  <script src="scripts/libs/autocomplete.js"></script>
+  <script src="scripts/libs/jquery-ui.min.js"></script>
+
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/main.js"></script>

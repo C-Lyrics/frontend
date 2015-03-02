@@ -138,7 +138,7 @@ angular.module('frontendApp')
                         weight: countFrequency(val, lyrics),
                     };
                 });
-                words = selectMostFrequents(words, 200);
+                words = selectMostFrequents(words, N);
                 return words;
             },
 
