@@ -19,7 +19,7 @@ angular.module('frontendApp')
 
         $scope.songsList = songs.map(function(val, idx) {
             val.link = window.location.origin + '#/' + artists +
-                '/Lyrics/' + word + '/' + val.id;
+                '/SongsList/' + word + '/' + val.id;
             // val.link = $location.path() + '/' + val.id;
             return val;
         });

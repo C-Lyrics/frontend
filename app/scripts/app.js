@@ -22,6 +22,7 @@ angular
         'angular-jqcloud',
     ])
     .config(function($routeProvider, $locationProvider) {
+
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -43,6 +44,6 @@ angular
                 redirectTo: '/'
             });
 
-        // $locationProvider.html5Mode(false)
-        //     .hashPrefix('!');
+        $locationProvider.html5Mode(false)
+            .hashPrefix('!');
     });
