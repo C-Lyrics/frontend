@@ -56,7 +56,7 @@ angular.module('frontendApp')
         }
 
         // That's waht triggers all the ugly errors
-        $scope.$watch('searchWord', function(newVal, oldVal) {
+        $scope.$watch('currentSearch', function(newVal, oldVal) {
             if (newVal === oldVal) {
                 return;
             }
@@ -69,6 +69,11 @@ angular.module('frontendApp')
             $scope.suggestions = res;
             initAutocomplete();
         });
+
+        $scope.updateSearchContent = function() {
+            $scope.searchWord = jQuery('#autocomplete')
+                .val();
+        };
 
         $scope.generateWC = function() {
             var artist = $scope.currentSearch;
