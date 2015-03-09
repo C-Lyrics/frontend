@@ -78,5 +78,15 @@ describe('Service: Lyrics', function () {
   it('should return count number', function () {
     expect(countFrequency(word, lyrics)).toBe(number);
   });
+  
+  
+  it('should show lyrics left-aligned', function () {
+  });
+  it('should show selected word highlighted in yellow', function () {
+  });
+  it('should navigate back to songs page', function () {
+  });
+  it('should navigate back to home page', function () {
+  });
 
 });
