@@ -61,77 +61,106 @@ angular.module('frontendApp')
             return songs.map(function(val, idx) {
                 //get rid of punctuation
                 var newStr = val.lyrics.replace(/[^A-Za-z]/g,
-                    " ");
+                    '');
 
                 //create initial array
                 var initArray = newStr.split(' ');
+                var finalArray = [];
+                var isRemoved = false;
 
                 //get rid of duplicate words and some common stop words
                 var foundWords = new Array(initArray[0]);
-                for (var i = 0; i < initArray.length; i++) {
+                var i = 0;
+                while (i < initArray.length) {
                     if (initArray[i].toLowerCase() === 'the') {
+                        // delete initArray[i];
+                        // i++;
                         initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() === 'I') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        i++;
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'am') {
-                        initArray.splice(i, 1);
+                       delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'is') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'it') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'are') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'he') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'she') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);  
                     }
                     else if (initArray[i].toLowerCase() ===
                         'we') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'you') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'me') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'they') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() === 'a') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() === 't') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() === 's') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
                     else if (initArray[i].toLowerCase() ===
                         'not') {
-                        initArray.splice(i, 1);
+                        delete initArray[i];
+                        //initArray.splice(i, 1);
                     }
+                    else{
+                        i++;
+                    }
+                    var found = false;
                     for (var j = 0; j < foundWords.length; j++) {
-                        if (initArray[i] == foundWords[j]) {
+                        if (initArray[i] === foundWords[j]) {
                             initArray.splice(i, 1);
+                            found = true;
                         }
+                    }
+                    if (found === false){
+                        finalArray.push(initArray[i]);
                     }
                     foundWords.push(initArray[i]);
                 }
