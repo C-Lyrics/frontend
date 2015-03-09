@@ -11,7 +11,7 @@ angular.module('frontendApp')
     .service('Server', function() {
         this.URL = 'http://localhost:9000/#!/';
         // this.server = 'http://localhost:9000/';
-        this.SERVER = 'localhost';
+        this.SERVER = 'http://localhost/backend/backend/index.php/';
 
         this.errorHandler = function(response) {
             var data = response.data,

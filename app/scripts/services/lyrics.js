@@ -8,7 +8,7 @@
  * Factory in the frontendApp.
  */
 angular.module('frontendApp')
-    .factory('Lyrics', function($http) {
+    .factory('Lyrics', function($http, Server) {
         /*
          * The way we store songs is as a list of JS objects:
          * [{
@@ -17,186 +17,30 @@ angular.module('frontendApp')
          *   artist: ''
          * }, ...]
          */
-        var songs = [{
-            title: 'No Woman No Cry',
-            lyrics: 'The world is beautiful, THE I am high.',
-            artist: 'Bob Marley',
-        }, {
-            title: 'We Are the Champions',
-            lyrics: 'We are the champions the champions, the champions that is it.',
-            artist: 'Queen',
-        }, {
-            title: 'Sympathy for the Devil',
-            lyrics: 'Devil is cool, or am I the devil\'s advocate ? ThE',
-            artist: 'Marley',
-        }, {
-            title: 'Yellow Submarine',
-            lyrics: 'I do not live in a yellow submarine but who cares, rigth ?',
-            artist: 'The Beatles',
-        }, ];
-
+        var serverUrl = Server.SERVER + 'getSongs/';
+        var songsSaved = [];
         var extractWords = function(songs) {
-            // Receives an array of songs, return an array of
-            // words with the stopwords stripped and punctuation as well.
-            // http://stackoverflow.com/questions/5631422/stop-word-removal-in-javascript
-            // get rid of stop words
-            /*var stop_words = new Array('a', 'the', 'I', 'am');
-            		var filtered  = noPunctArray.split( /\b/ ).filter( function( v ){
-        				return stop_words.indexOf( v ) == -1;
-  					});
-            		stop_words.forEach(function(noPunctArray) {
-      					var reg = new RegExp(noPunctArray +'\\s','gi')
-      					noPunctArray = noPunctArray.replace(reg, "");
-  					});
-
-            		//get rid of repeated words
-
-            		//return final array
-                    return val.lyrics.split(' ');
-             })
-                .reduce(function(prev, curr, idx) {
-                    return prev.concat(curr);
-            	}, []);
-        };*/
-            return songs.map(function(val, idx) {
-                //get rid of punctuation
-                var newStr = val.lyrics.replace(/[^A-Za-z]/g,
+            var i, song, lyrics = [];
+            for (i = 0; i < songs.length; i++) {
+                song = songs[i].lyrics;
+                song = song.replace(
+                    /\s(the|am|I|are|not|t|they|me|you|he|she|he|are|it|if|is|or|o|a|don|about|above|after|again|against|all|and|any|aren|as|act|herself|have|from|during|each|few|for|how|was|were|very|too|to|two|one|your|re|let|s|only|myself|other|ours|same|that|these|those|this|them|then|their|under|until|ve|why|us|an|in|on|do)\s/gi,
                     '');
-
-                //create initial array
-                var initArray = newStr.split(' ');
-                var finalArray = [];
-                var isRemoved = false;
-
-                //get rid of duplicate words and some common stop words
-                var foundWords = new Array(initArray[0]);
-                var i = 0;
-                while (i < initArray.length) {
-                    if (initArray[i].toLowerCase() === 'the') {
-                        // delete initArray[i];
-                        // i++;
-                        initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() === 'I') {
-                        delete initArray[i];
-                        i++;
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'am') {
-                       delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'is') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'it') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'are') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'he') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'she') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);  
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'we') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'you') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'me') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'they') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() === 'a') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() === 't') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() === 's') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else if (initArray[i].toLowerCase() ===
-                        'not') {
-                        delete initArray[i];
-                        //initArray.splice(i, 1);
-                    }
-                    else{
-                        i++;
-                    }
-                    var found = false;
-                    for (var j = 0; j < foundWords.length; j++) {
-                        if (initArray[i] === foundWords[j]) {
-                            initArray.splice(i, 1);
-                            found = true;
-                        }
-                    }
-                    if (found === false){
-                        finalArray.push(initArray[i]);
-                    }
-                    foundWords.push(initArray[i]);
-                }
-
-                //return final array of words to show up in cloud
-                return initArray;
+                lyrics = lyrics.concat(song.split(' '));
+            }
+            lyrics = lyrics.filter(function(item, pos) {
+                return lyrics.indexOf(item) == pos;
             })
-
-            .reduce(function(prev, curr, idx) {
-                return prev.concat(curr);
-            }, []);
+            return lyrics;
         };
 
         var countFrequency = function(word, lyrics) {
             //change all lyrics to lowercase to allow "match"
             //function to add to count
             lyrics = lyrics.toLowerCase();
-            return (lyrics.split(word).length - 1);
+            return (lyrics.split(word)
+                .length - 1);
         };
-
-        // var words = [{
-        //     text: 'The',
-        //     weight: 6,
-        // }, {
-        //     text: 'world',
-        //     weight: 1,
-        // }, {
-        //     text: 'beautiful',
-        //     weight: 1,
-        // }, {
-        //     text:'am',
-        //     weight: 2,
-        // }, ];
-
-        // use slice to copy the array instead of just making a reference
-        // will return the Objects sorted by weight
 
         var selectMostFrequents = function(words, N) {
             // TODO: Return the top N words, from the words array, which contains
@@ -217,7 +61,7 @@ angular.module('frontendApp')
             selectedArtists: [],
 
             getSong: function(id) {
-                return songs[id];
+                return songsSaved[id];
             },
 
             loadArtists: function(artists, callback) {
@@ -226,15 +70,15 @@ angular.module('frontendApp')
                 for (i = 0; i < artists.length; i++) {
                     artist = artists[i];
                     this.getLyrics(artist, function() {
-                        callback(songs);
+                        callback(songsSaved);
                     });
                 }
             },
 
             getSongsTitle: function(word) {
                 var song, lyrics, i, occurences, titles = [];
-                for (i = 0; i < songs.length; i++) {
-                    song = songs[i];
+                for (i = 0; i < songsSaved.length; i++) {
+                    song = songsSaved[i];
                     lyrics = song.lyrics;
                     occurences = lyrics.toLowerCase()
                         .indexOf(word);
@@ -252,7 +96,25 @@ angular.module('frontendApp')
 
             getLyrics: function(artist, callback) {
                 // Don't forget to save the lyrics in the songs variable.
-                callback(songs);
+                var url = serverUrl + artist;
+                $http.get(url, {
+                    cache: true
+                })
+                    .then(function(data) {
+                        if (!!data.data.error) {
+                            alert('No results found');
+                            return;
+                        }
+                        var songs = data.data.map(function(val, idx) {
+                            return {
+                                title: val[1],
+                                artist: val[0],
+                                lyrics: val[2],
+                            };
+                        });
+                        songsSaved = songsSaved.concat(songs);
+                        callback(songs);
+                    }, Server.errorHandler);
             },
 
             formatTop: function(songs, N) {

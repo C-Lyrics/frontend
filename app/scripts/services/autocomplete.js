@@ -13,11 +13,21 @@ angular.module('frontendApp')
             'Stones', 'Marley', 'Stones', 'Marley', 'Stones', 'Marley',
             'Stones', 'Marley', 'Stones', 'Beatles'
         ];
+        var serverUrl = Server.SERVER + 'getArtists/';
 
         // Public API here
         return {
             getArtists: function(name, callback) {
-                callback(artists);
+                var url = serverUrl + name;
+                $http.get(url, {
+                    cache: true
+                })
+                    .then(function(data) {
+                        var res = data.data.map(function(val, idx) {
+                            return val.name;
+                        });
+                        callback(res);
+                    }, function() {});
             }
         };
     });
