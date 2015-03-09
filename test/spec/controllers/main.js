@@ -1,22 +1,40 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: MainCtrl', function() {
 
-  // load the controller's module
-  beforeEach(module('frontendApp'));
+    // load the controller's module
+    beforeEach(module('frontendApp'));
 
-  var MainCtrl,
-    scope;
+    var MainCtrl,
+        scope;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+    // Initialize the controller and a mock scope
+    beforeEach(inject(function($controller, $rootScope) {
+        scope = $rootScope.$new();
+        MainCtrl = $controller('MainCtrl', {
+            $scope: scope
+        });
+    }));
+
+    it('should check if the MainCtrl works', function() {
+        expect(!!MainCtrl)
+            .toBe(true);
     });
-  }));
 
-  it('should check if the MainCtrl works', function () {
-    expect(!!MainCtrl).toBe(true);
-  });
+    it('should load main.html', function() {});
+    it('should have a grey background', function() {});
+    it('should have a purple submit button', function() {});
+    it('should have a purple outlined text field', function() {});
+
+    describe('Search functionality: Error', function() {
+        it('should error message "Artist not found"', function() {});
+        it('should error message "empty query"', function() {});
+    });
+
+    describe('Search functionality: Success', function() {
+        it('should display a word cloud', function() {});
+        it('should have a white background for word cloud', function() {});
+        it('should make facebook and add2cloud visible', function() {});
+    });
+
 });
