@@ -56,19 +56,19 @@ angular.module('frontendApp')
         }
 
         // That's waht triggers all the ugly errors
-        // $scope.$watch('currentSearch', function(newVal, oldVal) {
-        //     if (newVal === oldVal) {
-        //         return;
-        //     }
-        //     Autocomplete.getArtists(newVal, function(res) {
-        //         $scope.suggestions = res;
-        //         initAutocomplete();
-        //     });
-        // });
-        // Autocomplete.getArtists('', function(res) {
-        //     $scope.suggestions = res;
-        //     initAutocomplete();
-        // });
+        $scope.$watch('currentSearch', function(newVal, oldVal) {
+            if (newVal === oldVal) {
+                return;
+            }
+            Autocomplete.getArtists(newVal, function(res) {
+                $scope.suggestions = res;
+                initAutocomplete();
+            });
+        });
+        Autocomplete.getArtists('', function(res) {
+            $scope.suggestions = res;
+            initAutocomplete();
+        });
 
         $scope.updateSearchContent = function() {
             $scope.searchWord = jQuery('#autocomplete')
@@ -78,8 +78,9 @@ angular.module('frontendApp')
         $scope.generateWC = function() {
             var artist = $scope.currentSearch;
             if (!artist) {
-                alert('Please enter an artist\'s name.');
-                return;
+                var msg = 'Please enter an artist\'s name.';
+                alertconsole.log(msg);
+                $scope.waitingMessage = msg;
             }
             $scope.waitingMessage =
                 'Please wait, as loading the lyrics takes about 1 second per song.';
@@ -96,7 +97,9 @@ angular.module('frontendApp')
             var artist = jQuery('#autocomplete')
                 .val();
             if (!artist) {
-                alert('Please enter an artist\'s name.');
+                var msg = 'Please enter an artist\'s name.';
+                console.log(msg);
+                $scope.waitingMessage = msg;
                 return;
             }
             $scope.waitingMessage =

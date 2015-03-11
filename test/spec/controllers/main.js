@@ -20,29 +20,4 @@ describe('Controller: MainCtrl', function() {
         expect(!!MainCtrl)
             .toBe(true);
     });
-
-    it('should load main.html', function() {
-
-        expect(angular.element('#cWordCloud')
-            .css('backgroundColor'))
-            .toBe('rgb(211, 211, 211)');
-    });
-    it(
-        'should have a grey background', function() {});
-    it(
-        'should have a purple submit button', function() {});
-    it(
-        'should have a purple outlined text field', function() {});
-
-    describe('Search functionality: Error', function() {
-        it('should error message "Artist not found"', function() {});
-        it('should error message "empty query"', function() {});
-    });
-
-    describe('Search functionality: Success', function() {
-        it('should display a word cloud', function() {});
-        it('should have a white background for word cloud', function() {});
-        it('should make facebook and add2cloud visible', function() {});
-    });
-
 });
