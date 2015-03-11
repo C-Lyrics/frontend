@@ -166,6 +166,30 @@ describe('Service: Lyrics', function () {
 			expect(Lyrics.extractWords(songs)).toEqual(['Some', 'nights', 'stay', 'cashing', 'my', 'bad', 'luck', 'Some', 'nights', 'call', 'a', 'draw']);
 			
 		}); 
+
+    it('should test removeDuplicates function', function () {
+      
+      var results= [];
+      
+        var word0= {  
+             text: 'sun',
+             weight: 6
+          };
+          var word1= {  
+             text: 'moon',
+               weight: 3
+          }; 
+          var word1= {  
+             text: 'moon',
+               weight: 3
+          };
+            
+          results.push(word1);
+          results.push(word0);
+      
+      expect(Lyrics.removeDuplicates(results)).toEqual([{text: 'moon', weight: 3}, {text: 'sun', weight: 6}]);
+      
+    });
 			
 	});
 
