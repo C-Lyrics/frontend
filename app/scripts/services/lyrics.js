@@ -24,19 +24,29 @@ angular.module('frontendApp')
             for (i = 0; i < songs.length; i++) {
                 song = songs[i].lyrics;
                 song = song.replace(
-                    /\s(the|am|I|are|not|t|they|me|you|he|she|he|are|it|if|is|or|o|a|don|about|above|after|again|against|all|and|any|aren|as|act|herself|have|from|during|each|few|for|how|was|were|very|too|to|two|one|your|re|let|s|only|myself|other|ours|same|that|these|those|this|them|then|their|under|until|ve|why|us|an|in|on|do)\s/gi,
-                    '');
+                    /\s(the|am|I|are|not|t|they|me|you|he|she|he|are|it|if|is|or|o|a|don|about|above|after|again|against|all|and|any|aren|as|act|herself|have|from|during|each|few|for|how|was|were|very|too|to|two|one|your|re|let|s|only|myself|other|ours|same|that|these|those|this|them|then|their|under|until|ve|why|us|an|in|on|do|up|my)\s/gi,
+                    ' ');
                 lyrics = lyrics.concat(song.split(' '));
             }
-            lyrics = lyrics.filter(function(item, pos) {
-                return lyrics.indexOf(item) == pos;
-            })
+            // lyrics = lyrics.filter(function(item, pos) {
+            //     return lyrics.indexOf(item) == pos;
+            // });
             return lyrics;
         };
+
+        var removeDuplicates = function(words){
+            words = words.filter(function(item, pos) {
+                return words.indexOf(item) == pos;
+            });
+            return words;
+        };
+
+
 
         var countFrequency = function(word, lyrics) {
             //change all lyrics to lowercase to allow "match"
             //function to add to count
+            word = word.toLowerCase();
             lyrics = lyrics.toLowerCase();
             return (lyrics.split(word)
                 .length - 1);
@@ -46,7 +56,6 @@ angular.module('frontendApp')
             // TODO: Return the top N words, from the words array, which contains
             // counts and word: [{text: '', weight: int}, ...]
             // sort according to the weight
-
             var sortWordByWeight = words.slice(0);
             sortWordByWeight.sort(function(a, b) {
                 return a.weight - b.weight;
@@ -59,11 +68,15 @@ angular.module('frontendApp')
         return {
             selectedLyrics: [],
             selectedArtists: [],
+            songsSaved: songsSaved,
+			extractWords: extractWords,
+            countFrequency: countFrequency,
+            selectMostFrequents: selectMostFrequents,
 
             getSong: function(id) {
                 return songsSaved[id];
             },
-
+            
             loadArtists: function(artists, callback) {
                 var i, artist;
                 this.selectedArtists = artists;
@@ -119,13 +132,15 @@ angular.module('frontendApp')
 
             formatTop: function(songs, N) {
                 var words = extractWords(songs),
-                    lyrics = words.join(' ');
-                words = words.map(function(val, idx, array) {
+                lyrics = removeDuplicates(words);
+                words = words.join();
+                words = lyrics.map(function(val, idx, array) {
                     return {
                         text: val,
-                        weight: countFrequency(val, lyrics),
+                        weight: countFrequency(val, words),
                     };
                 });
+
                 words = selectMostFrequents(words, N);
                 return words;
             },
