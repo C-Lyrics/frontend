@@ -16,11 +16,6 @@ describe('Controller: MainCtrl', function() {
         });
     }));
 
-    it('should check if the MainCtrl works', function() {
-        expect(!!MainCtrl)
-            .toBe(true);
-    });
-
     it('should load main.html', function() {});
     it('should have a grey background', function() {});
     it('should have a purple submit button', function() {});
@@ -35,6 +30,13 @@ describe('Controller: MainCtrl', function() {
         it('should display a word cloud', function() {});
         it('should have a white background for word cloud', function() {});
         it('should make facebook and add2cloud visible', function() {});
+    });
+
+    describe('White Box testing', function() {
+          it('should check MainCtrl functionality', function () {
+            expect(!!MainCtrl).toBe(true);
+          });
+
     });
 
 });
