@@ -1,6 +1,6 @@
 <div class="col-sm-12">
     <h3>'{{searchWord}}'</h3>
-    <table class="table">
+    <table class="table" id="songlist" style="text-align:left;">
         <thead>
             <tr>
                 <th>Title</th>
@@ -10,7 +10,7 @@
         <tbody>
             <tr ng-repeat="song in songsList|orderBy:'count':true">
                 <td>
-                    <a ng-href="{{song.link}}">
+                    <a class="c-link" ng-href="{{song.link}}">
                         {{song.title}}
                     </a>
                 </td>
@@ -23,6 +23,6 @@
         </tbody>
     </table>
     <div class="col-sm-12 row">
-        <div c-navigation-button link="cloudLink" text="'Back to Cloud'"></div>
+        <div id="back2cloud" c-navigation-button link="cloudLink" text="'Back to Cloud'"></div>
     </div>
 </div>
