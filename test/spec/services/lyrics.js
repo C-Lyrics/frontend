@@ -28,7 +28,7 @@ describe('Service: Lyrics', function () {
 	
 	describe('White box testing of Lyrics service', function () {
 	
-		it('should return array of song titles', function () {
+		it('should test getSongsTitle function and return array of song titles', function () {
 			
 			var song0 = {
             	title: 'Some Nights',
@@ -58,8 +58,53 @@ describe('Service: Lyrics', function () {
             	{	
                 	id: 1,
                 	title: 'Some Nights Part Two',
-                	count: 3,}]);
-				}
-			);
+                	count: 3,}
+            ]);
+                	
 		});
+		
+		it('should test formatTop function and return the N most common words', function () {
+		
+			var songs= [];
+			
+			var song0 = {
+            	title: 'Some Nights',
+            	lyrics: 'Some nights I stay up cashing in my bad luck, some nights I call it a draw',
+            	artist: 'Fun'
+         	};
+         	var song1 = {
+            	title: 'Some Nights Modified',
+            	lyrics: 'This is the third time nights is being used',
+            	artist: 'Fun'
+         	};
+         	var song2 = {
+            	title: 'Some Nights Modified Even More',
+            	lyrics: 'I will have bad luck if the word luck doesnt appear in most used list because I used luck many times',
+            	artist: 'Fun'
+         	};
+			
+			songs.push(song0);
+			songs.push(song1);
+			songs.push(song2);
+			
+			var results= [];
+			
+			var word0= {	
+					text: 'used',
+					weight: 2
+			}; 
+            var word1= {	
+                	text: 'luck',
+                	weight: 3
+            };
+            
+            results.push(word0);
+            results.push(word1);
+			
+			expect(Lyrics.formatTop(songs, 2)).toEqual(results);
+		
+		});
+			
+	});
+		
 });
