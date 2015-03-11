@@ -37,6 +37,7 @@ angular.module('frontendApp')
         var countFrequency = function(word, lyrics) {
             //change all lyrics to lowercase to allow "match"
             //function to add to count
+            word = word.toLowerCase();
             lyrics = lyrics.toLowerCase();
             return (lyrics.split(word)
                 .length - 1);
@@ -59,6 +60,8 @@ angular.module('frontendApp')
         return {
             selectedLyrics: [],
             selectedArtists: [],
+
+            countFrequency: countFrequency,
 
             getSong: function(id) {
                 return songsSaved[id];
