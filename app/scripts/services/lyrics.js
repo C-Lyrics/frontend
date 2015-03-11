@@ -24,8 +24,8 @@ angular.module('frontendApp')
             for (i = 0; i < songs.length; i++) {
                 song = songs[i].lyrics;
                 song = song.replace(
-                    /\s(the|am|I|are|not|t|they|me|you|he|she|he|are|it|if|is|or|o|a|don|about|above|after|again|against|all|and|any|aren|as|act|herself|have|from|during|each|few|for|how|was|were|very|too|to|two|one|your|re|let|s|only|myself|other|ours|same|that|these|those|this|them|then|their|under|until|ve|why|us|an|in|on|do)\s/gi,
-                    '');
+                    /\s(the|am|I|are|not|t|they|me|you|he|she|he|are|it|if|is|or|o|a|don|about|above|after|again|against|all|and|any|aren|as|act|herself|have|from|during|each|few|for|how|was|were|very|too|to|two|one|your|re|let|s|only|myself|other|ours|same|that|these|those|this|them|then|their|under|until|ve|why|us|an|in|on|do|up|my|a)\s/gi,
+                    ' ');
                 lyrics = lyrics.concat(song.split(' '));
             }
             lyrics = lyrics.filter(function(item, pos) {
@@ -61,7 +61,7 @@ angular.module('frontendApp')
             selectedLyrics: [],
             selectedArtists: [],
             songsSaved: songsSaved,
-
+			extractWords: extractWords,
             countFrequency: countFrequency,
             selectMostFrequents: selectMostFrequents,
 
