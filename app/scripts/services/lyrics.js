@@ -30,7 +30,7 @@ angular.module('frontendApp')
             }
             lyrics = lyrics.filter(function(item, pos) {
                 return lyrics.indexOf(item) == pos;
-            })
+            });
             return lyrics;
         };
 
