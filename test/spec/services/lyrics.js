@@ -104,40 +104,43 @@ describe('Service: Lyrics', function () {
 			var songs= [];
 			
 			var song0 = {
-            	title: 'Some Nights',
-            	lyrics: 'Some nights stay up cashing in my bad luck, some nights call it a draw',
-            	artist: 'Fun'
-         	};
-         	var song1 = {
-            	title: 'Some Nights Modified',
-            	lyrics: 'This is the third time nights is being used',
-            	artist: 'Fun'
-         	};
-         	var song2 = {
+            	title: 'Up Up and Away',
+            	lyrics: 'Ill be up up and away Up up and away Cause they gon judge me anyway so whatever sun',
+            	artist: 'Kid Cudi'
+      };
+      var song1 = {
+            	title: 'Up Up and Away Modified',
+            	lyrics: 'Now when the sun come up Ill be there to say what up the morning sun sun',
+            	artist: 'Kid Cudi'
+      };
+      var song2 = {
             	title: 'Some Nights Modified Even More',
-            	lyrics: 'will have bad luck if the word luck doesnt appear in most used list because used luck many times',
-            	artist: 'Fun'
-         	};
-			
+            	lyrics: 'Now when the sun come up Ill be there to say what up In the morning brush my teeth sun',
+            	artist: 'Kid Cudi'
+      };
+
+			//push songs into an empty songs array
+
 			songs.push(song0);
 			songs.push(song1);
-			songs.push(song2);
-			
+      songs.push(song2);
+
 			var results= [];
 			
-			var word0= {	
-					text: 'I',
-					weight: 12
-			}; 
-            var word1= {	
-                	text: 'luck',
-                	weight: 3
-            };
+
+      var word0= {	
+          text: 'sun',
+          weight: 6
+      };
+      var word1= {  
+          text: 'In',
+          weight: 3
+      }; 
             
-            results.push(word1);
-            results.push(word0);
+      results.push(word1);
+      results.push(word0);
 			
-			//expect(Lyrics.formatTop(songs, 2)).toEqual(results);
+			expect(Lyrics.formatTop(songs, 2)).toEqual(results);
 		
 		});
 		
@@ -160,7 +163,7 @@ describe('Service: Lyrics', function () {
 			songs.push(song0);
 			songs.push(song1);
 			
-			expect(Lyrics.extractWords(songs)).toEqual(['Some', 'nights', 'stay', 'cashing', 'my', 'bad', 'luck', 'call', 'a', 'draw']);
+			expect(Lyrics.extractWords(songs)).toEqual(['Some', 'nights', 'stay', 'cashing', 'my', 'bad', 'luck', 'Some', 'nights', 'call', 'a', 'draw']);
 			
 		}); 
 			
