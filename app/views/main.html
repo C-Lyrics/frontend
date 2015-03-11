@@ -1,5 +1,5 @@
 <div id="main.html" class="col-sm-12 wc-view" style="margin-bottom:20px;">
-  <div c-cloud-word words="topWords" class="col-sm-12"></div>
+  <div id="c-cloud-word" c-cloud-word words="topWords" class="col-sm-12"></div>
 </div>
 <center>
   <h5 style="margin-top:20px;" id="waitingMessage">{{waitingMessage}}</h5>
@@ -13,8 +13,8 @@
       </form>
     </div>
     <div c-action-button callback="generateWC" text="'Submit'"></div>
-    <div c-action-button callback="addToCloud" text="'Add to Cloud'"></div>
-    <div class="fb-share-button" data-href="{{shareUrl}}" data-layout="button_count"></div>
+    <div id="add2cloud" c-action-button callback="addToCloud" text="'Add to Cloud'"></div>
+    <div id="facebook" class="fb-share-button" data-href="{{shareUrl}}" data-layout="button_count"></div>
   </div>
 </div>
 <style>

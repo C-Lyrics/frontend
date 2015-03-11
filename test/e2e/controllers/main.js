@@ -39,15 +39,19 @@ describe('Application Homepage', function() {
                 waiting = browser.driver.findElement(by.id(
                     'waitingMessage'));
 
-            input.sendKeys('');
-            submit.click();
-            browser.driver.sleep(500);
-            waiting.getText()
-                .then(function(error) {
-                    expect(!error)
-                        .toBeTruthy();
+            input.clear()
+                .then(function() {
+                    input.sendKeys('');
+                    submit.click()
+                        .then(function() {
+                            browser.driver.sleep(500);
+                            waiting.getText()
+                                .then(function(error) {
+                                    expect(!error)
+                                        .toBeTruthy();
+                                });
+                        });
                 });
-
         });
 
         it('should error message  "no artist"', function() {
@@ -55,25 +59,83 @@ describe('Application Homepage', function() {
                 submit = browser.driver.findElement(by.css('a.btn')),
                 waiting = browser.driver.findElement(by.id(
                     'waitingMessage'));
+            input.clear()
+                .then(function() {
+                    input.sendKeys('ThisArtistdoesnotexists');
+                    submit.click();
+                    input.clear()
+                        .then(function() {
+                            browser.driver.sleep(500);
+                            var text = waiting.getText()
+                                .then(function(error) {
+                                    expect(!!error)
+                                        .toBeTruthy();
+                                });
 
-            input.sendKeys('ThisArtistdoesnotexists');
-            submit.click();
-            browser.driver.sleep(500);
-            var text = waiting.getText()
-                .then(function(error) {
-                    expect(!!error)
-                        .toBeTruthy();
+                        });
                 });
         });
     });
 
     describe('Search functionality: Success', function() {
 
-        it('should display a word cloud', function() {});
+        it('should display a word cloud', function() {
+            var input = browser.driver.findElement(by.css('input')),
+                submit = browser.driver.findElement(by.css('a.btn'));
 
-        it('should have a white background for word cloud', function() {});
+            input.sendKeys('Capital Cities');
+            browser.driver.sleep('1000');
+            submit.click();
+            input.clear()
+                .then(function() {
+                    var wordCloud = browser.driver.findElement(
+                        by.id(
+                            'c-cloud-word'));
+                    expect(!!wordCloud)
+                        .toBeTruthy();
+                });
+        });
 
-        it('should make facebook and add2cloud visible', function() {});
+        it('should have a white background for word cloud', function() {
+            var input = browser.driver.findElement(by.css('input')),
+                submit = browser.driver.findElement(by.css('a.btn'));
+
+            input.sendKeys('Capital Cities');
+            browser.driver.sleep('1000');
+            submit.click();
+            input.clear()
+                .then(function() {
+                    var wordCloud = browser.driver.findElement(
+                        by.id(
+                            'c-cloud-word'));
+                    expect(wordCloud.getCssValue(
+                        'background-color'))
+                        .toBe('rgba(0, 0, 0, 0)');
+                });
+        });
+
+        it('should make facebook and add2cloud visible', function() {
+            var input = browser.driver.findElement(by.css('input')),
+                submit = browser.driver.findElement(by.css('a.btn'));
+
+            input.sendKeys('Capital Cities');
+            browser.driver.sleep('1000');
+            submit.click();
+            input.clear()
+                .then(function() {
+                    var wordCloud = browser.driver.findElement(
+                            by.id('c-cloud-word')),
+                        facebook = browser.driver.findElement(
+                            by.id('facebook')),
+                        add2cloud = browser.driver.findElement(
+                            by.id('add2cloud'));
+                    expect(!!facebook)
+                        .toBeTruthy(!!add2cloud);
+                    expect(!!add2cloud)
+                        .toBeTruthy();
+                });
+
+        });
 
     });
 
