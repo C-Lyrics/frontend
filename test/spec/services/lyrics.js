@@ -39,7 +39,28 @@ describe('Service: Lyrics', function () {
     });
     
     it('should test the selectMostFrequents function', function(){
-      
+      //in the function, will take the the top 4 words that are sorted based on frequency
+      var words = [{text: 'Kelsey', weight: 100}, 
+      {text: 'is', weight: 700},
+      {text: 'the', weight: 90},
+      {text: 'best', weight: 800},
+      {text: 'ever', weight: 120}];
+      var frequentwords = Lyrics.selectMostFrequents(words, 4);
+      //expect 'the' not to be in the list
+      expect(frequentwords).toEqual([
+      {
+        text: 'Kelsey',
+        weight: 100,},
+      {
+        text: 'ever',
+        weight: 120,},
+      {
+        text: 'is',
+        weight: 700,},
+      {
+        text: 'best',
+        weight: 800,},
+      ]);
     });
 	
 		it('should test getSongsTitle function and return array of song titles', function () {

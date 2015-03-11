@@ -63,6 +63,7 @@ angular.module('frontendApp')
             songsSaved: songsSaved,
 
             countFrequency: countFrequency,
+            selectMostFrequents: selectMostFrequents,
 
             getSong: function(id) {
                 return songsSaved[id];
