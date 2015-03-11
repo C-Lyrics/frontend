@@ -59,11 +59,12 @@ angular.module('frontendApp')
         return {
             selectedLyrics: [],
             selectedArtists: [],
+            songsSaved: songsSaved,
 
             getSong: function(id) {
                 return songsSaved[id];
             },
-
+            
             loadArtists: function(artists, callback) {
                 var i, artist;
                 this.selectedArtists = artists;
