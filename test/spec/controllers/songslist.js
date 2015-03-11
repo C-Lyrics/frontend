@@ -3,13 +3,12 @@
 describe('Controller: SongslistCtrl', function () {
 
   // load the controller's module
-  // beforeEach(module('frontendApp'));
+  beforeEach(module('frontendApp'));
 
-  // var SongslistCtrl,
-  //   scope;
-    
 
   // Initialize the controller and a mock scope
+  var SongslistCtrl, scope;
+
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     
@@ -22,12 +21,6 @@ describe('Controller: SongslistCtrl', function () {
   //   expect(scope.cloudLink).toBe(Server.URL + '?artists=' + artists);
   // });
 
-
-//kelsey added
-  // var $rootScope;
-  // beforeEach(inject(function (_$rootScope_) {
-  //   $rootScope = _$rootScope_;
-  // }));
 
   // describe('sorting the songs list', function(){
 
@@ -47,27 +40,24 @@ describe('Controller: SongslistCtrl', function () {
   //   });
   // });
 
-  // it ('will have the list aligned left', function(){
+  it ('will have the list aligned left', function(){
 
-  // });
-  // it ('will allow the title of any of the songs to be clickable', function(){
+  });
+  it ('will allow the title of any of the songs to be clickable', function(){
 
-  // });
-  // it ('will have the back to cloud button navigate back to the cloud generated page', function(){
+  });
+  it ('will have the back to cloud button navigate back to the cloud generated page', function(){
 
-  // });
-  // describe('main page navigation', function(){
+  });
+  describe('main page navigation', function(){
 
-  //   beforeEach(function(){
-  //     browser.get('views/main.html');
-  //   });
-
-  //   it ('navigate from a song title to the back to cloud page', function(){
-  //     // Find the back to cloud button on the page and click it
-  //     element(by.css(':button')).click();
-  //     //checks if it navigates back to cloud page
-  //     expect(element.all(by.css('[ng-view] p')).first().getText()).toMatch(/MainCtrl/);
-  //   });
-  // });
+    it ('navigate from a song title to the back to cloud page', function(){
+      var songs = 'Bangerz';
+      // Find the back to cloud button on the page and click it
+      //element(by.css(':button')).click();
+      //checks if it navigates back to cloud page
+      //expect(element.all(by.css('[ng-view] p')).first().getText()).toMatch(/MainCtrl/);
+    });
+  });
 
 });

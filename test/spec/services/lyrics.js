@@ -25,6 +25,10 @@ describe('Service: Lyrics', function () {
       expect(wordcount2).toEqual(11);
   });
   
+  it('should test the selectMostFrequents function', function(){
+
+  });
+  
   
   it('should show lyrics left-aligned', function () {
   });
