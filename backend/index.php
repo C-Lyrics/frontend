@@ -2,7 +2,7 @@
 require __DIR__ . '/EchoNest.php';
 require  __DIR__ . '/vendor/autoload.php';
 use Slim\Slim;
-
+header("Access-Control-Allow-Origin: *");
 
 $app = new Slim([
 	'templates.path' => './templates'

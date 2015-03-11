@@ -31,6 +31,22 @@ class EchoNestConnection {
 		return $results;
 	}
 
+	public function getApiKey() {
+		return $this->apiKey;
+	}
+
+	public function getClient() {
+		return $this->echonest;
+	}
+
+	public function getArtistApi() {
+		return $this->artistApi;
+	}
+
+	public function getSongApi() {
+		return $this->songApi;
+	}
+
 }
 
 ?>
