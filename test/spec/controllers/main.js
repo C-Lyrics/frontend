@@ -21,15 +21,6 @@ describe('Controller: MainCtrl', function() {
             .toBe(true);
     });
 
-    it('should display the application name', function() {
-        browser.get('http://localhost:9000');
-
-        var appName = element(by.css('h3.text-muted')); //using the CSS selector
-
-        expect(appName.getText())
-            .toEqual('App1');
-    });
-
     it('should load main.html', function() {
 
         expect(angular.element('#cWordCloud')

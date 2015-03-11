@@ -56,19 +56,19 @@ angular.module('frontendApp')
         }
 
         // That's waht triggers all the ugly errors
-        $scope.$watch('currentSearch', function(newVal, oldVal) {
-            if (newVal === oldVal) {
-                return;
-            }
-            Autocomplete.getArtists(newVal, function(res) {
-                $scope.suggestions = res;
-                initAutocomplete();
-            });
-        });
-        Autocomplete.getArtists('', function(res) {
-            $scope.suggestions = res;
-            initAutocomplete();
-        });
+        // $scope.$watch('currentSearch', function(newVal, oldVal) {
+        //     if (newVal === oldVal) {
+        //         return;
+        //     }
+        //     Autocomplete.getArtists(newVal, function(res) {
+        //         $scope.suggestions = res;
+        //         initAutocomplete();
+        //     });
+        // });
+        // Autocomplete.getArtists('', function(res) {
+        //     $scope.suggestions = res;
+        //     initAutocomplete();
+        // });
 
         $scope.updateSearchContent = function() {
             $scope.searchWord = jQuery('#autocomplete')
@@ -84,7 +84,6 @@ angular.module('frontendApp')
             $scope.waitingMessage =
                 'Please wait, as loading the lyrics takes about 1 second per song.';
             Lyrics.getLyrics(artist, function(songs) {
-                debugger
                 $scope.waitingMessage = '';
                 Lyrics.selectedArtists = [artist, ];
                 $scope.topWords = Lyrics.formatTop(songs, nbTopWords);
