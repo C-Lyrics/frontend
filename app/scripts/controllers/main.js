@@ -18,6 +18,7 @@ angular.module('frontendApp')
         $scope.shareUrl = $location.path();
         $scope.topWords = [];
         $scope.suggestions = [];
+        $scope.firstSearch = true;
 
         /*
          * TODO:
@@ -79,9 +80,11 @@ angular.module('frontendApp')
             var artist = $scope.currentSearch;
             if (!artist) {
                 var msg = 'Please enter an artist\'s name.';
-                alertconsole.log(msg);
+                console.log(msg);
                 $scope.waitingMessage = msg;
+                return;
             }
+            $scope.firstSearch = false;
             $scope.waitingMessage =
                 'Please wait, as loading the lyrics takes about 1 second per song.';
             Lyrics.getLyrics(artist, function(songs) {
@@ -102,6 +105,7 @@ angular.module('frontendApp')
                 $scope.waitingMessage = msg;
                 return;
             }
+            $scope.firstSearch = false;
             $scope.waitingMessage =
                 'Please wait, as loading the lyrics takes about 1 second per song.';
             Lyrics.getLyrics(artist, function(lyrics) {

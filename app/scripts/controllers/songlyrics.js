@@ -14,12 +14,14 @@ angular.module('frontendApp')
             word = $routeParams.word,
             song = Lyrics.getSong(parseInt($routeParams.id)),
             artists = $routeParams.artists;
-            
+
         highlightSong = function(song, word) {
             // Change the lyrics so that it highlights the search words.
             // Use Regexp to do that !
             var re = new RegExp('(' + word + ')', "ig");
-            return song.lyrics.replace(re, '<mark style="">$1</mark>');
+            return song.lyrics.replace(re,
+                '<span class="highlight" style="color:#FFFF00;">$1</span>'
+            );
         };
 
         $scope.selectedSong = highlightSong(song, word);
