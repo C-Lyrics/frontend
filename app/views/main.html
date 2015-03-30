@@ -13,8 +13,10 @@
       </form>
     </div>
     <div c-action-button callback="generateWC" text="'Submit'"></div>
-    <div id="add2cloud" c-action-button callback="addToCloud" text="'Add to Cloud'"></div>
-    <div id="facebook" class="fb-share-button" data-href="{{shareUrl}}" data-layout="button_count"></div>
+    <span id="firstSearch" style="display:none;">
+      <div id="add2cloud" c-action-button callback="addToCloud" text="'Add to Cloud'"></div>
+      <div id="facebook" class="fb-share-button" data-href="{{shareUrl}}" data-layout="button_count"></div>
+    </span>
   </div>
 </div>
 <style>

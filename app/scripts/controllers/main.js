@@ -18,13 +18,10 @@ angular.module('frontendApp')
         $scope.shareUrl = $location.path();
         $scope.topWords = [];
         $scope.suggestions = [];
-        $scope.firstSearch = true;
 
         /*
          * TODO:
          * - Loading image
-         * - Error message if there is one
-         * - Submit "enter" will do launch submit button
          */
 
         updateShareUrl = function() {
@@ -84,7 +81,8 @@ angular.module('frontendApp')
                 $scope.waitingMessage = msg;
                 return;
             }
-            $scope.firstSearch = false;
+            document.getElementById('firstSearch')
+                .style.display = 'inline';
             $scope.waitingMessage =
                 'Please wait, as loading the lyrics takes about 1 second per song.';
             Lyrics.getLyrics(artist, function(songs) {
@@ -105,7 +103,8 @@ angular.module('frontendApp')
                 $scope.waitingMessage = msg;
                 return;
             }
-            $scope.firstSearch = false;
+            document.getElementById('firstSearch')
+                .style.display = 'inline';
             $scope.waitingMessage =
                 'Please wait, as loading the lyrics takes about 1 second per song.';
             Lyrics.getLyrics(artist, function(lyrics) {
